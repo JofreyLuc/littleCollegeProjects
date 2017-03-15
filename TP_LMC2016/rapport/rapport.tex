@@ -1,0 +1,291 @@
+\documentclass[12pt]{article} % taille de police et type de document
+
+\usepackage[utf8]{inputenc} % encodage des caractères
+\usepackage[french]{babel} % langue du document
+\usepackage[a4paper, margin=1in]{geometry} % format papier et taille de marge
+\usepackage[colorlinks=true, urlcolor=blue, linkcolor=black, pdfborder={0 0 0 [0 0]}]{hyperref} % gestion des liens hypertextes (bordures invisibles)
+\usepackage{color} % gestion des couleurs (\color{couleur} et \definecolor{...})
+\usepackage{eurosym} % pour le symbole € (\euro)
+\usepackage{graphicx} % pour inclure des images (\includegraphics[angle, scale, height, width, page]{image.png})
+\usepackage{tabularx} % pour les tableaux (\begin{tabularx}{taille}{|X|X|X|})
+\usepackage{listings} % pour l'inclusion de code (\lstinputlisting[language=foo]{ficher.foo})
+\usepackage{wrapfig} % pour intégrer une figure dans un texte (\begin{wrapfig}{taille})
+%\usepackage{showframe} % pour afficher les bordures des marges/zones de texte
+
+\definecolor{commentcolor}{rgb}{0.50, 0.50, 0.50} % couleur grise pour les commentaires
+\definecolor{forest}{rgb}{0.13, 0.55, 0.13}
+
+\lstset{ % style des inclusions de code
+	basicstyle=\footnotesize,
+	frame=single,
+	numbers=left,
+	breaklines=true,
+	showstringspaces=false,
+	rulecolor=\color{black},
+	commentstyle=\color{commentcolor},
+	keywordstyle=\color{blue},
+	stringstyle=\color{red},
+	backgroundcolor=\color{white},
+}
+
+\lstset{literate=
+	{á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+	{Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+	{à}{{\`a}}1 {è}{{\'e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+	{À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+	{ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+	{Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+	{â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+	{Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+	{œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+	{ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+	{€}{{\euro}}1 {£}{{\pounds}}1
+}
+
+\title{Projet LMC - Programmation Logique}
+\author{Jofrey \bsc{Luc} \and Quentin \bsc{Sonrel}}
+\date\today
+
+\begin{document} % début du corps du document
+
+\maketitle
+
+%\newpage
+%\tableofcontents
+%\newpage
+
+\section*{Question 1}
+
+\subsection*{Implémentation des règles}
+
+\subsubsection*{Utilisation de X?=T au lieu de E}
+
+Pour l'implémentation des règles, dans leur "prototype", nous avons fait le choix d'utiliser \verb|X?=T| pour désigner l'expression en paramètre du prédicat au lieu d'une simple variable \verb|E|, comme suit (exemple) :
+
+\begin{center}
+\verb|regle(X?=T, rename)|
+\end{center}
+
+Au lieu de :
+
+\begin{center}
+	\verb|regle(E, rename)|
+\end{center}
+
+Cela nous permet de simplifier l'implémentation des prédicats en évitant l'utilisation du prédicat \verb|arg| de Prolog.\\
+Ainsi, la règle \textit{rename} peut se définir comme ceci :
+
+\begin{center}
+	\verb|regle(X?=T, rename) :- var(X), var(T), !.|
+\end{center}
+
+Au lieu de :
+
+\begin{center}
+	\verb|regle(E, rename) :- arg(1, E, X), arg(2, E, T), var(X),var(T), !.|
+\end{center}
+
+Cela nous permet aussi d'éviter les erreurs de l'interpréteur (erreur de syntaxe) avec certaines expressions.\\
+
+Il existe aussi une solution alternative qui consiste à utiliser \verb|functor(E, ?=, 2)}| en début de prédicat, à la place de \verb|arg|.
+
+\subsubsection*{Implémentation de la règle \textit{clash}}
+
+Pour implémenter la règle \textit{clash} nous avons essayé une première approche qui consistait à comparer l'arité et les noms des termes à l'aide du prédicat functor afin déclencher le \textit{clash} dans les cas suivants :
+
+\begin{itemize}
+	\item Arité différente mais noms identiques
+	\item Noms différents mais arité identique
+	\item Arité et noms différents\\
+\end{itemize}
+
+Le premier jet d'implémentation de cette méthode était pensé pour fonctionner en 3 prédicats (un pour chacun des trois cas cités précédemment).\\
+
+Cette solution n'a pas été retenue car une alternative plus simple et plus "maligne" était de faire appel à la règle \textit{decompose}, comme ceci :
+
+\begin{center}
+	\verb|regle(E, clash) :- \+ regle(E, decompose), !.|
+\end{center}
+
+Ce choix est dû au fait que \textit{decompose} compare les noms et l'arité des termes de l'expression, ainsi, si la règle \textit{decompose} n'est pas applicable, \textit{clash} est déclenchable.
+
+\subsection*{Implémentation de occur\_check}
+
+Notre première tentative d'implémentation du prédicat \verb|occur_check| nous a posé un problème majeur. L'idée de base derrière notre implémentation était, pour une expression, de la parcourir et d'éclater les termes composés (ex: $f(g(X))$) au fur et à mesure afin "d'aplatir" l'expression jusqu'à isoler le terme dont on veut vérifier la présence.\\
+
+Le procédé d'éclatement était récursif : on prend une expression, on l'éclate à l'aide du prédicat \verb|=..|, on retire le terme non composé issu de l'éclatement et on recommence sur le reste. Par exemple, pour $f(g(X))$, la première étape sépare $f$ et $g(X)$ afin de relancer le processus sur $g(X)$ après avoir "mis de côté" (liste séparée) $f$. Le but est donc d'aplatir une expression telle que $f(g(X))$ en une liste $[f, g, X]$ (par exemple), afin de faciliter la recherche d'un terme.\\
+
+Le problème rencontré dans l'implémentation de cette méthode est le cas d'une tentative d'éclatement d'un terme non composé. En effet, lors du parcours, si on rencontre un terme non composé il sera impossible d'éclater avec \verb|=..|, causant une erreur et donc l'arrêt de la récursion, le prédicat ne fonctionne donc pas...\\
+
+Au cours de nos recherches pour résoudre ce soucis, nous avons découvert l'existence du prédicat \verb|contains_var| qui permet justement de vérifier si une expression contient un terme donné. Nous avons donc décidé d'utiliser cette alternative qui correspondait parfaitement à nos besoin.
+
+\subsection*{Implémentation de la réduction}
+
+Lors de l'implémentation de la réduction, le problème majeur rencontré était celui du remplacement de variable (via le prédicat \verb|remplace|). Lors de notre première tentative d'implémenter le prédicat \verb|remplace|, celui-ci ne fonctionnait que sur un remplacement d'une variable par un atome mais pas sur le remplacement d'une variable par une autre (notre objectif ici). La procédure était basée sur un exemple trouvé sur internet\footnote{\url{http://stackoverflow.com/questions/12638347/replace-atom-with-variable/37526158\#37526158}}.\\
+
+Après quelques essais et recherches, nous avons réussi à obtenir un prédicat fonctionnel pour le remplacement d'une variable par une autre, notamment à l'aide de l'utilisation du prédicat \verb|==| pour la substitution de variable. Cette seconde méthode fonctionnait avec des appels récursifs à \verb|remplace| avec association d'une expression et de sa version éclatée en liste (méthode similaire à celle employée pour la première implémentation de notre \verb|occur_check|). Le but état d'aplatir l'expression en liste jusqu'à trouver la variable à remplacer, la remplacer, puis rassembler le tout dans le format d'origine.\\
+
+Cette méthode ne fonctionnait hélas que sur des expression simples (ex : $f(g(X))$) mais pas sur des expressions plus complexes (ex : $f(g(X))+h(X)$).\\
+
+La solution à ce problème a été une grosse simplification du problème avec l'utilisation directe du prédicat \verb|=| pour le remplacement de variable. Cette méthode n'est pas idéale dans la mesure où ce prédicat fait appel à une unification (native à Prolog) alors que notre but est ici d'implémenter une unification...
+
+\section*{Question 2}
+
+Cette question portait sur l'implémentation de différentes stratégies pour l'exécution de l'algorithme d'unification. Le travail réalisé s'est donc découpé en deux parties : l'implémentation d'une stratégie alternative à celle employée jusqu'à présent, et l'implé\-mentation de prédicats permettant de choisir quelle stratégie employer.\\
+
+Ces implémentations ont donc donné naissance à plusieurs prédicats dont les prédicats \verb|unifie(P, choix_premier)| et \verb|unifie(P, choix_pondere)| utilisant respectivement la stratégie "simple" (traitement des équations dans l'ordre) et la stratégie "pondérée" (choix d'une équation à traiter en fonction du poids de la règle à lui appliquer). Chacune de ces deux stratégies ont demandé l'écriture et l'utilisation des prédicats\\\verb|choix_premier(P, Q, E, R)| et \verb|choix_pondere(P, Q, E, R)| qui servent à choisir les équations à traiter dans le bon ordre pour chaque stratégie.
+
+\subsection*{Implémentation des différentes stratégies}
+
+\subsubsection*{choix\_premier}
+
+L'implémentation de \verb|choix_premier| est la plus simple car elle fait fonctionner l'algorithme d'unification de la même façon que précédemment (en utilisant l'ordre naturel des équations). Ainsi, pour chacune des règles, \verb|choix_premier| appelle simplement les prédicats d'unification écrits dans la question 1.\\
+
+Le prédicat \verb|unifie(P, choix_premier)| appelle directement \verb|unifie(P)| comme précé\-demment puisque c'est un cas particulier de \verb|unifie(P, S)| où S = choix\_premier.
+
+\subsubsection*{choix\_pondere}
+
+L'implémentation de \verb|choix_pondere| consiste en 8 prédicats, un par règle (plus un prédicat de fin lorsuqe plus aucune règle n'est applicable), ordonnés dans le programme par poids (\textit{clash/check $>$ rename/simplify $>$ orient $>$ decompose $>$ expand}) et se terminant chacun par le \verb|cut|. Chacun de ces prédicats utilise deux sous-prédicats :\\\verb|premiere_applicable(P, R, E)|, qui renvoie dans E la première équation de P qui satisfait R, puis \verb|retirer(E, P, Q)|, qui renvoie dans Q l'ensemble P sans l'équation R. Au final, un appel à \verb|choix_pondere(P, Q, E, R)| renverra dans R la règle avec la priorité la plus haute qui peut être appliquée sur au moins une des équations de P, dans E la première équation sur laquelle peut être appliquée R, et dans Q P\textbackslash{E}.\\
+
+De ce fait, \verb|unifie(P, choix_pondere)| va quant à lui appliquer successivement sur P \verb|choix_pondere|, puis sur les E et Q obtenus \verb|unifie_pondere(R, E, Q, Suite)|, une version alternative de \verb|unifie(P)| qui va simplement faire les affichages puis appliquer \verb|reduit| sur R, E, Q et Suite (contrairement à \verb|unifie| qui l'appelait directement sur la première équation de P).\\
+
+\verb|unifie(P, choix_pondere)| va ensuite s'appeler récursivement sur la liste d'équations réduite Suite jusqu'à s'arrêter sur la liste vide. 
+
+\subsection*{Comparatif des stratégies}
+
+\begin{figure}[h!]
+	\begin{verbatim}
+	?- trace_unif([f(X,Y) ?= f(g(Z),h(a)), Z ?= f(X)], choix_premier).
+	system: [f(_G201,_G202)?=f(g(_G204),h(a)),_G204?=f(_G201)]
+	decompose: f(_G201,_G202)?=f(g(_G204),h(a))
+	system: [_G3?=f(_G1),_G2?=h(a),_G1?=g(_G3)]
+	expand: _G3?=f(_G1)
+	system: [_G2?=h(a),_G1?=g(f(_G1))]
+	expand: _G2?=h(a)
+	system: [_G1?=g(f(_G1))]
+	check: _G1?=g(f(_G1))
+	\end{verbatim}
+	\caption{Trace d'exécution avec choix\_premier}
+\end{figure}
+
+\begin{figure}[h!]
+	\begin{verbatim}
+	?- trace_unif([f(X,Y) ?= f(g(Z),h(a)), Z ?= f(X)], choix_pondere).
+	system: [f(_G242,_G243)?=f(g(_G245),h(a)),[_G245?=f(_G242)]]
+	decompose: f(_G242,_G243)?=f(g(_G245),h(a))
+	system: [_G245?=f(_G242),[_G243?=h(a),_G242?=g(_G245)]]
+	expand: _G245?=f(_G242)
+	system: [_G242?=g(f(_G242)),[_G243?=h(a)]]
+	check: _G242?=g(f(_G242))
+	\end{verbatim}
+	\caption{Trace d'exécution sur choix\_pondere}
+\end{figure}
+
+On constate ici une légère différence entre l'exécution des deux stratégies : \verb|choix_pondere| effectue une étape de moins. On peut donc en conclure que \verb|choix_pondere| est plus rapide à l'exécution que \verb|choix_premier|. Cela est dû au fait que \verb|choix_pondere| ordonne les étapes en mettant \textit{clash} et \textit{check} en premier. Ces deux étapes étant critiques et servant de cas d'arrêt à l'algorithme, cela permet de s'arrêter plutôt et de sauter des étapes inutiles, rendant l'algorithme plus rapide.\\
+Il est à noter que dans certains cas l'exécution sera la même entre les deux stratégies. Cela rend donc \verb|choix_pondere| plus rapide en moyenne seulement (au pire aussi lent, au mieux plus rapide que \verb|choix_premier|).\\
+
+\subsection*{Autre stratégie possible}
+
+Une autre alternative à choix\_premier et à choix\_pondere serait de donner la priorité aux règles \textit{clash} et \textit{check} (donc les appliquer dès que possible) et sinon choisir la première équation de la liste.
+
+\section*{Question 3}
+
+Dans cette question, nous avons implémenté deux prédicats simples, le premier permet de lancer l'algorithme d'unification précédemment écrit en affichant une trace d'exécution :
+
+\begin{center}
+\verb|trace_unif(P, S) :- set_echo, unifie(P, S).|
+\end{center}
+
+Tandis que le second, permet de lancer le même algorithme mais cette fois sans afficher la trace d'exécution :
+
+\begin{center}
+\verb|unif(P, S) :- clr_echo, unifie(P, S).|
+\end{center}
+
+\section*{Exemples et traces d'exécution}
+
+\subsection*{Exemple sur une autre équation}
+
+\begin{figure}[h!]
+	\begin{verbatim}
+	?- trace_unif([X?=Y, Y?=g(h(Z)), X?=Z], choix_premier).
+	system: [_G201?=_G202,_G202?=g(h(_G207)),_G201?=_G207]
+	rename: _G201?=_G202
+	system: [_G201?=g(h(_G207)),_G201?=_G207]
+	expand: _G201?=g(h(_G207))
+	system: [g(h(_G207))?=_G207]
+	orient: g(h(_G207))?=_G207
+	system: [_G207?=g(h(_G207))]
+	check: _G207?=g(h(_G207))
+	false.
+	\end{verbatim}
+	\caption{Nouvel exemple en stratégie choix\_premier}
+\end{figure}
+
+\newpage
+
+\begin{figure}[h!]
+	\begin{verbatim}
+	?- trace_unif([X?=Y, Y?=g(h(Z)), X?=Z], choix_pondere).
+	system: [_G201?=_G202,[_G202?=g(h(_G207)),_G201?=_G207]]
+	rename: _G201?=_G202
+	system: [_G201?=_G207,[_G201?=g(h(_G207))]]
+	rename: _G201?=_G207
+	system: [_G201?=g(h(_G201)),[]]
+	check: _G201?=g(h(_G201))
+	false.
+	\end{verbatim}
+	\caption{Même exemple en stratégie choix\_pondere}
+\end{figure}
+
+Notes :
+\begin{itemize}
+	\item On constate que l'unification échoue, comme il se doit.
+	\item La trace d'exécution est cohérente.
+	\item La stratégie choix\_pondere est à nouveau plus rapide/efficace que choix\_premier.
+\end{itemize}
+
+\newpage
+
+\section*{Code source}
+
+\lstinputlisting[language=prolog]{../unifie2.pl}
+
+\newpage
+
+\section*{Sources}
+
+\begin{itemize}
+	\item \href{http://lpn.swi-prolog.org/lpnpage.php?pageid=online}{Manuel SWI Prolog (prise en main du langage, notions globales)}
+	\item \href{http://www.swi-prolog.org/pldoc/doc_for?object=root}{Documentation SWI Prolog (documentation des prédicats)}
+	\item StackOverflow (exemples, cas similaires, etc...)
+\end{itemize}
+
+\end{document}
+
+% Mise en forme :
+
+% \textbf{texte} -> gras
+% \emph{text} -> italique
+% \noindent -> supprimer l'indentation du prochain paragraphe
+% \pagestyle{empty, plain, heading, myheadings} -> style de la page
+% \thispagestyle{style} -> style de la présente page
+% \renewcommand{\sectionmark}[1]{\markright{Partie \thepart, section \thesection : #1}{}} -> À utiliser dans le cas d'une style de page myheadings
+
+% Autre :
+
+% \addcontentsline{toc}{niveau}{nom} -> ajouter une ligne à la table des matières manuellement
+% \setcounter{niveau}{numéro} -> changer la numérotation d'un niveau (ex: \setcounter{section}{0})
+% \appendix -> passer aux annexes
+% \href{url}{nom} -> lien hypertexte
+% \phantom{} -> espace vide (pour ne pas fusionner "--" par exemple)
+% \shorthandoff{caractère} -> supprimer l'espace avant/après un caractère
+
+% Mesures :
+
+% \textwidth -> largeur du texte
+% \linewidth -> longueur de la ligne
+
+% Astuces :
+
+% Pour bien placer les figures (si besoin) : \begin{figure}{h!} et \clearpage après la figure

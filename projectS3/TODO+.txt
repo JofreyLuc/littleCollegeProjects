@@ -1,0 +1,57 @@
+TODO :
+18/09/2014
+	DONE - Vérification sur le fichier texte à importer :
+	* Verifier qu'il n'est pas vide.
+	* Vérifier que dans chaque bloc de "#" (entre le premier "#" et une ligne vide (\n\n)) 
+	il y a un nombre de "#" multiple de 5.
+ 	* Vérifier que : Nombre de "#" de l'espace de jeu = Nombre de "#" total des pieces proposées
+
+22/09/2014
+	DONE - Initialisation d'une fenêtre :
+	* Initialiser une fenetre avec SDL en s'inspirant du projet du semestre dernier
+	* Créer deux espaces de jeux dans la fenêtre : un pour le "puzzle", un pour les piéces proposées
+ 	DONE - Adapter le makefile du semestre dernier au projet actuel
+
+29/09/2014
+	DONE - Affichage d'un pentomino unique
+	DONE - Remplissage d'un tableau de pentominos
+	DONE - Fonctions de tests de conformité
+
+10/09/2014
+	DONE - Bouger une pièce
+	DONE - Faire pivoter/Retourner une pièce
+	DONE - Faire pivoter/Retourner plus joli :)
+	
+	DONE - Créer le tableau dynamique du dallage
+	
+	WO - Finir les batteries de tests
+	DONE - Calculs des placements des pièces sur le dallage 
+	DONE - Conditions de victoire 
+	
+14/09/2014
+	DONE - Fonctions de limitation des taille de tableaux dynamiques (dallage, bigstr et pentos)
+	DONE - Placement initial des pièces
+
+18/10/2014
+	DONE - LES PROTOTYPES (╯°□°）╯︵ ┻━┻
+	DONE - Retirer une pièce du dallage proprement (remise à zéro des cases du dallage concernés)
+	
+20/10/2014
+	- Debugger les déplacements multipièces
+
+21/10/2014
+	- Améliorer :
+	* Fonction de remplissage du goal (avec goal_specs)
+	* Fonctions de move concernant les placements dans goal
+	* Parcours des tableaux (maintenant qu'on a les tailles effectives et pas maximum...
+
+	- Condenser les fonctions d'initialisation
+28/10/2014
+	PROJET PRESQUE FINI (Sauf si on veut rajouter d'autres éléments grphiques, du son, ou d'autres niveaux avec un menu et toussa toussa...)
+	Ce qu'il reste à faire en priorité :
+	DONE - Régler le problème du remplissage du tableau quand on y lâche une pièce
+	DONE - Régler l'incrémentation et la décrementation du victory lors des manipulations des pièces sur le goal
+	- Régler la "priorité d'affichage" des pièces lorsqu'on en lâche une sur une autre (peut-importe l'endroit de la fenêtre)
+	DONE - Régler la prise d'un seul pentomino quand 2 sont superposés
+	DONE - Régler les tests pour le lachement d'une piece sur le goal, pour que TOUTES LES PIECES POSSIBLES puissent etre mises ou non sur le goal
+	Et c'est à peu près tout ce qu'il faudrait faire pour que le jeu marche comme il faut

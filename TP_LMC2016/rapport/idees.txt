@@ -1,0 +1,76 @@
+Idées rapport :
+
+/*regle(E, rename) :-
+    % Rename applicable si x et t variables
+    arg(1, E, X),
+    arg(2, E, T),
+    var(X),
+    var(T), !.
+*/
+
+regle(X?=T, rename) :-
+    var(X),
+    var(T), !.
+
+-> transfo E en X?=T (permet d'éviter les erreur avec d'autres expressions
+AUTRE SOLUTION : mettre functor(E, ?=, 2), en début de prédicat
+
+/*
+regle(E, clash) :-
+    % Clash applicable si les deux termes ont une arité différente
+    arg(1, E, Fgauche),
+    arg(2, E, Fdroite),
+    functor(Fgauche, Nom, AriteG),
+    functor(Fdroite, Nom, AriteD).
+
+regle(E, clash) :-
+    % Clash applicable si les deux termes ont un nom différent
+    arg(1, E, Fgauche),
+    arg(2, E, Fdroite),
+    functor(Fgauche, NomG, Arite),
+    functor(Fdroite, NomD, Arite).
+*/
+
+% Peut-être trop facile %
+regle(E, clash) :-
+    \+ regle(E, decompose), !.
+
+-> Règle clash : définie par rapport à decompose ou pas
+
+
+
+
+occur_check(X, T) :-
+    /*explode([T], ListeCompleteT),
+    occur_check2(X, ListeCompleteT).*/
+    contains_var(X, T).
+
+/*
+occur_check2(X, [Head|Tail]) :-
+    compound(Head),
+    Head =.. ListeHead,
+    occur_check2(X, [ListeHead|Tail]).
+*/
+
+/*
+explode([coumpond(Head)|Tail], ListeComplete) :-
+    compound(Head),
+    Head =.. ListeEclatee,
+    ListeEclatee = [HeadTete|TailTete],
+    append(HeadTete, ListeComplete, ListeComplete),
+    append(TailTete, Tail, Tail),
+    explode(Tail, ListeComplete).
+
+explode([Head|Tail], ListeComplete) :-
+    append(Head, ListeComplete, ListeComplete),
+    explode(Tail, ListeComplete).
+
+explode([], L).*/
+
+/*
+occur_check2(X, [Head|_]) :- X == Head, !.
+
+occur_check2(X, [_|Tail]) :- occur_check2(X, Tail).
+*/
+
+-> Occur_check : possible avec un prédicat prolog (ou alors implémentation "all the way"

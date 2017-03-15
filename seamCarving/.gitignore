@@ -1,0 +1,7 @@
+.idea
+bin
+*.class
+*.iml
+*.dot
+*.*~
+src/META-INF
