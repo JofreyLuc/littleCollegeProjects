@@ -1,0 +1,252 @@
+\hypertarget{classBdd}{\section{Bdd Class Reference}
+\label{classBdd}\index{Bdd@{Bdd}}
+}
+
+
+Classe simulant la base de données \-: Elle stocke des instances d'\hyperlink{classUtilisateur}{Utilisateur} et de \hyperlink{classProduit}{Produit}.  
+
+
+
+
+{\ttfamily \#include $<$B\-D\-D.\-hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classBdd_af59ec2bf0e35d5698b0fcb86baf9654c}{sauvegarder\-Compte} (\hyperlink{classUtilisateur}{Utilisateur} \&u)
+\begin{DoxyCompactList}\small\item\em Permet de sauvegarder un \hyperlink{classUtilisateur}{Utilisateur} dans le vector. \end{DoxyCompactList}\item 
+\hyperlink{classUtilisateur}{Utilisateur} $\ast$ \hyperlink{classBdd_ad69c2c6cbe4acb3e120cb7266c89066a}{get\-Utilisateur} (std\-::string pseudo, std\-::string mot\-De\-Passe)
+\begin{DoxyCompactList}\small\item\em Permet de récupérer un \hyperlink{classUtilisateur}{Utilisateur} stocké dans la bdd à partir de ses infos de connexion. \end{DoxyCompactList}\item 
+void \hyperlink{classBdd_a6ff827126b062278117c109948e38975}{sauvegarder\-Produit} (\hyperlink{classProduit}{Produit} \&p)
+\begin{DoxyCompactList}\small\item\em Ajoute un \hyperlink{classProduit}{Produit} dans le vector de stockage. \end{DoxyCompactList}\item 
+void \hyperlink{classBdd_aa6600392d2cd0784b86e49cc27ca8d81}{supprimer\-Produit} (int id)
+\begin{DoxyCompactList}\small\item\em Permet de supprimer un produit de la base de données. \end{DoxyCompactList}\item 
+\hyperlink{classProduit}{Produit} $\ast$ \hyperlink{classBdd_a1d09b2925efed0c4364fb6a753458f36}{get\-Produit} (int id)
+\begin{DoxyCompactList}\small\item\em Permet de récupérer un \hyperlink{classProduit}{Produit} dans le vector de stockage. \end{DoxyCompactList}\item 
+std\-::vector$<$ \hyperlink{classProduit}{Produit} $>$ \hyperlink{classBdd_a9a02865ead592f460c1470eb823efd27}{rechercher\-Produit} (std\-::string search)
+\begin{DoxyCompactList}\small\item\em Permet de rechercher un \hyperlink{classProduit}{Produit} dans le vector. \end{DoxyCompactList}\item 
+std\-::vector$<$ \hyperlink{classProduit}{Produit} $>$ \hyperlink{classBdd_a4b2ff1e090847959e06ea05ca9420bd8}{tri\-\_\-\-Prix} ()
+\begin{DoxyCompactList}\small\item\em Tri des produits par ordre croissant. \end{DoxyCompactList}\item 
+std\-::vector$<$ \hyperlink{classProduit}{Produit} $>$ \hyperlink{classBdd_aabeda2da6b014c697dda2c6138238485}{tri\-\_\-desc\-\_\-\-Prix} ()
+\begin{DoxyCompactList}\small\item\em Tri des produits par ordre décroissant. \end{DoxyCompactList}\item 
+std\-::vector$<$ \hyperlink{classProduit}{Produit} $>$ \hyperlink{classBdd_a9856e8aab1e9fea711bc3926d6d12806}{tri\-\_\-alpha} ()
+\begin{DoxyCompactList}\small\item\em Tri des produits par ordre alphabétique. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \hyperlink{classBdd_afc463b03323c146d0430f10ea39f4c1c}{comp\-\_\-prix} (\hyperlink{classProduit}{Produit} p1, \hyperlink{classProduit}{Produit} p2)
+\begin{DoxyCompactList}\small\item\em Comparaison pour tri \-: ordre croissant. \end{DoxyCompactList}\item 
+static bool \hyperlink{classBdd_ab7f82aa10dce52e71f2eccc7c96f0931}{desc\-\_\-prix} (\hyperlink{classProduit}{Produit} p1, \hyperlink{classProduit}{Produit} p2)
+\begin{DoxyCompactList}\small\item\em Comparaison pour tri \-: ordre décroissant. \end{DoxyCompactList}\item 
+static bool \hyperlink{classBdd_accf0e7e4f71fa833c90fdbba9f104fc6}{comp\-\_\-alpha} (\hyperlink{classProduit}{Produit} p1, \hyperlink{classProduit}{Produit} p2)
+\begin{DoxyCompactList}\small\item\em Comparaison pour tri \-: ordre alphabétique. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classe simulant la base de données \-: Elle stocke des instances d'\hyperlink{classUtilisateur}{Utilisateur} et de \hyperlink{classProduit}{Produit}. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classBdd_accf0e7e4f71fa833c90fdbba9f104fc6}{\index{Bdd@{Bdd}!comp\-\_\-alpha@{comp\-\_\-alpha}}
+\index{comp\-\_\-alpha@{comp\-\_\-alpha}!Bdd@{Bdd}}
+\subsubsection[{comp\-\_\-alpha}]{\setlength{\rightskip}{0pt plus 5cm}static bool Bdd\-::comp\-\_\-alpha (
+\begin{DoxyParamCaption}
+\item[{{\bf Produit}}]{p1, }
+\item[{{\bf Produit}}]{p2}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classBdd_accf0e7e4f71fa833c90fdbba9f104fc6}
+
+
+Comparaison pour tri \-: ordre alphabétique. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Deux} & produits \\
+\hline
+\end{DoxyParams}
+\hypertarget{classBdd_afc463b03323c146d0430f10ea39f4c1c}{\index{Bdd@{Bdd}!comp\-\_\-prix@{comp\-\_\-prix}}
+\index{comp\-\_\-prix@{comp\-\_\-prix}!Bdd@{Bdd}}
+\subsubsection[{comp\-\_\-prix}]{\setlength{\rightskip}{0pt plus 5cm}static bool Bdd\-::comp\-\_\-prix (
+\begin{DoxyParamCaption}
+\item[{{\bf Produit}}]{p1, }
+\item[{{\bf Produit}}]{p2}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classBdd_afc463b03323c146d0430f10ea39f4c1c}
+
+
+Comparaison pour tri \-: ordre croissant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Deux} & produits \\
+\hline
+\end{DoxyParams}
+\hypertarget{classBdd_ab7f82aa10dce52e71f2eccc7c96f0931}{\index{Bdd@{Bdd}!desc\-\_\-prix@{desc\-\_\-prix}}
+\index{desc\-\_\-prix@{desc\-\_\-prix}!Bdd@{Bdd}}
+\subsubsection[{desc\-\_\-prix}]{\setlength{\rightskip}{0pt plus 5cm}static bool Bdd\-::desc\-\_\-prix (
+\begin{DoxyParamCaption}
+\item[{{\bf Produit}}]{p1, }
+\item[{{\bf Produit}}]{p2}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classBdd_ab7f82aa10dce52e71f2eccc7c96f0931}
+
+
+Comparaison pour tri \-: ordre décroissant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Deux} & produits \\
+\hline
+\end{DoxyParams}
+\hypertarget{classBdd_a1d09b2925efed0c4364fb6a753458f36}{\index{Bdd@{Bdd}!get\-Produit@{get\-Produit}}
+\index{get\-Produit@{get\-Produit}!Bdd@{Bdd}}
+\subsubsection[{get\-Produit}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Produit}$\ast$ Bdd\-::get\-Produit (
+\begin{DoxyParamCaption}
+\item[{int}]{id}
+\end{DoxyParamCaption}
+)}}\label{classBdd_a1d09b2925efed0c4364fb6a753458f36}
+
+
+Permet de récupérer un \hyperlink{classProduit}{Produit} dans le vector de stockage. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \-: l'id d'un \hyperlink{classProduit}{Produit} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+un pointeur sur un \hyperlink{classProduit}{Produit} 
+\end{DoxyReturn}
+\hypertarget{classBdd_ad69c2c6cbe4acb3e120cb7266c89066a}{\index{Bdd@{Bdd}!get\-Utilisateur@{get\-Utilisateur}}
+\index{get\-Utilisateur@{get\-Utilisateur}!Bdd@{Bdd}}
+\subsubsection[{get\-Utilisateur}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Utilisateur}$\ast$ Bdd\-::get\-Utilisateur (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{pseudo, }
+\item[{std\-::string}]{mot\-De\-Passe}
+\end{DoxyParamCaption}
+)}}\label{classBdd_ad69c2c6cbe4acb3e120cb7266c89066a}
+
+
+Permet de récupérer un \hyperlink{classUtilisateur}{Utilisateur} stocké dans la bdd à partir de ses infos de connexion. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Infos} & de connexion \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un pointeur sur un \hyperlink{classUtilisateur}{Utilisateur} 
+\end{DoxyReturn}
+\hypertarget{classBdd_a9a02865ead592f460c1470eb823efd27}{\index{Bdd@{Bdd}!rechercher\-Produit@{rechercher\-Produit}}
+\index{rechercher\-Produit@{rechercher\-Produit}!Bdd@{Bdd}}
+\subsubsection[{rechercher\-Produit}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<${\bf Produit}$>$ Bdd\-::rechercher\-Produit (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{search}
+\end{DoxyParamCaption}
+)}}\label{classBdd_a9a02865ead592f460c1470eb823efd27}
+
+
+Permet de rechercher un \hyperlink{classProduit}{Produit} dans le vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em search} & \-: le nom du produit à rechercher \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un vector de \hyperlink{classProduit}{Produit} correspondant à la recherche 
+\end{DoxyReturn}
+\hypertarget{classBdd_af59ec2bf0e35d5698b0fcb86baf9654c}{\index{Bdd@{Bdd}!sauvegarder\-Compte@{sauvegarder\-Compte}}
+\index{sauvegarder\-Compte@{sauvegarder\-Compte}!Bdd@{Bdd}}
+\subsubsection[{sauvegarder\-Compte}]{\setlength{\rightskip}{0pt plus 5cm}void Bdd\-::sauvegarder\-Compte (
+\begin{DoxyParamCaption}
+\item[{{\bf Utilisateur} \&}]{u}
+\end{DoxyParamCaption}
+)}}\label{classBdd_af59ec2bf0e35d5698b0fcb86baf9654c}
+
+
+Permet de sauvegarder un \hyperlink{classUtilisateur}{Utilisateur} dans le vector. 
+
+Vector de \hyperlink{classProduit}{Produit} stockés
+\begin{DoxyParams}{Parameters}
+{\em u} & \-: un \hyperlink{classUtilisateur}{Utilisateur} \\
+\hline
+\end{DoxyParams}
+\hypertarget{classBdd_a6ff827126b062278117c109948e38975}{\index{Bdd@{Bdd}!sauvegarder\-Produit@{sauvegarder\-Produit}}
+\index{sauvegarder\-Produit@{sauvegarder\-Produit}!Bdd@{Bdd}}
+\subsubsection[{sauvegarder\-Produit}]{\setlength{\rightskip}{0pt plus 5cm}void Bdd\-::sauvegarder\-Produit (
+\begin{DoxyParamCaption}
+\item[{{\bf Produit} \&}]{p}
+\end{DoxyParamCaption}
+)}}\label{classBdd_a6ff827126b062278117c109948e38975}
+
+
+Ajoute un \hyperlink{classProduit}{Produit} dans le vector de stockage. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & \-: un \hyperlink{classProduit}{Produit} \\
+\hline
+\end{DoxyParams}
+\hypertarget{classBdd_aa6600392d2cd0784b86e49cc27ca8d81}{\index{Bdd@{Bdd}!supprimer\-Produit@{supprimer\-Produit}}
+\index{supprimer\-Produit@{supprimer\-Produit}!Bdd@{Bdd}}
+\subsubsection[{supprimer\-Produit}]{\setlength{\rightskip}{0pt plus 5cm}void Bdd\-::supprimer\-Produit (
+\begin{DoxyParamCaption}
+\item[{int}]{id}
+\end{DoxyParamCaption}
+)}}\label{classBdd_aa6600392d2cd0784b86e49cc27ca8d81}
+
+
+Permet de supprimer un produit de la base de données. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \-: l'id d'un \hyperlink{classProduit}{Produit} \\
+\hline
+\end{DoxyParams}
+\hypertarget{classBdd_a9856e8aab1e9fea711bc3926d6d12806}{\index{Bdd@{Bdd}!tri\-\_\-alpha@{tri\-\_\-alpha}}
+\index{tri\-\_\-alpha@{tri\-\_\-alpha}!Bdd@{Bdd}}
+\subsubsection[{tri\-\_\-alpha}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<${\bf Produit}$>$ Bdd\-::tri\-\_\-alpha (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classBdd_a9856e8aab1e9fea711bc3926d6d12806}
+
+
+Tri des produits par ordre alphabétique. 
+
+\begin{DoxyReturn}{Returns}
+Une copie du vector de \hyperlink{classProduit}{Produit} trié 
+\end{DoxyReturn}
+\hypertarget{classBdd_aabeda2da6b014c697dda2c6138238485}{\index{Bdd@{Bdd}!tri\-\_\-desc\-\_\-\-Prix@{tri\-\_\-desc\-\_\-\-Prix}}
+\index{tri\-\_\-desc\-\_\-\-Prix@{tri\-\_\-desc\-\_\-\-Prix}!Bdd@{Bdd}}
+\subsubsection[{tri\-\_\-desc\-\_\-\-Prix}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<${\bf Produit}$>$ Bdd\-::tri\-\_\-desc\-\_\-\-Prix (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classBdd_aabeda2da6b014c697dda2c6138238485}
+
+
+Tri des produits par ordre décroissant. 
+
+\begin{DoxyReturn}{Returns}
+Une copie du vector de \hyperlink{classProduit}{Produit} trié 
+\end{DoxyReturn}
+\hypertarget{classBdd_a4b2ff1e090847959e06ea05ca9420bd8}{\index{Bdd@{Bdd}!tri\-\_\-\-Prix@{tri\-\_\-\-Prix}}
+\index{tri\-\_\-\-Prix@{tri\-\_\-\-Prix}!Bdd@{Bdd}}
+\subsubsection[{tri\-\_\-\-Prix}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<${\bf Produit}$>$ Bdd\-::tri\-\_\-\-Prix (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classBdd_a4b2ff1e090847959e06ea05ca9420bd8}
+
+
+Tri des produits par ordre croissant. 
+
+\begin{DoxyReturn}{Returns}
+Une copie du vector de \hyperlink{classProduit}{Produit} trié 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+include/B\-D\-D.\-hpp\end{DoxyCompactItemize}

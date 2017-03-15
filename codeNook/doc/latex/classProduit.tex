@@ -1,0 +1,103 @@
+\hypertarget{classProduit}{\section{Produit Class Reference}
+\label{classProduit}\index{Produit@{Produit}}
+}
+
+
+Classe gérant les champs des produits et les appels aux fonctions de leurs états.  
+
+
+
+
+{\ttfamily \#include $<$Produit.\-hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classProduit_af2869859ed8b99b3034ae92db555914b}{Produit} ()
+\begin{DoxyCompactList}\small\item\em Crée un produit par défaut avec ses champs initialisés. \end{DoxyCompactList}\item 
+\hypertarget{classProduit_a10b8f1a05c4308a24b14861310e7a344}{\hyperlink{classProduit_a10b8f1a05c4308a24b14861310e7a344}{Produit} (const \hyperlink{classProduit}{Produit} \&pr)}\label{classProduit_a10b8f1a05c4308a24b14861310e7a344}
+
+\begin{DoxyCompactList}\small\item\em Constructeur de copie (Crée un nouvel état pour éviter les fuites de mémoire) \end{DoxyCompactList}\item 
+\hyperlink{classProduit_aacb79a75a6e14e6ac99f82f4736fcb07}{Produit} (int i, std\-::string n, int p, int q, bool enchere)
+\begin{DoxyCompactList}\small\item\em Crée un produit avec ses infos. \end{DoxyCompactList}\item 
+\hypertarget{classProduit_a7b789cfa3048436fd050cb565b499c03}{\hyperlink{classProduit_a7b789cfa3048436fd050cb565b499c03}{$\sim$\-Produit} ()}\label{classProduit_a7b789cfa3048436fd050cb565b499c03}
+
+\begin{DoxyCompactList}\small\item\em Destructeur \-: Libère le pointeur sur son état. \end{DoxyCompactList}\item 
+\hypertarget{classProduit_a2c34d537936017da342429d9f35060ea}{int {\bfseries get\-Id} () const }\label{classProduit_a2c34d537936017da342429d9f35060ea}
+
+\item 
+\hypertarget{classProduit_a7a2d68cac6e51dffa6273fefe38ad418}{std\-::string {\bfseries get\-Nom} () const }\label{classProduit_a7a2d68cac6e51dffa6273fefe38ad418}
+
+\item 
+\hypertarget{classProduit_afd2ea2c2b4ec2ba66c8b445a13c748bc}{int {\bfseries get\-Prix} () const }\label{classProduit_afd2ea2c2b4ec2ba66c8b445a13c748bc}
+
+\item 
+\hypertarget{classProduit_a001097d6d954a23600d7dd9c31aec885}{int {\bfseries get\-Quantite} () const }\label{classProduit_a001097d6d954a23600d7dd9c31aec885}
+
+\item 
+\hypertarget{classProduit_a41272a691eb0146f16014fb62a8f2bbb}{\hyperlink{classStateProduit}{State\-Produit} $\ast$ {\bfseries get\-Etat} () const }\label{classProduit_a41272a691eb0146f16014fb62a8f2bbb}
+
+\item 
+\hypertarget{classProduit_a15ecb54571cc8dd4dffc0504eaedf47d}{void {\bfseries set\-Id} (int id)}\label{classProduit_a15ecb54571cc8dd4dffc0504eaedf47d}
+
+\item 
+\hypertarget{classProduit_a5f3c3093a4da08326e4b45c1faf781dc}{void {\bfseries set\-Nom} (std\-::string nom)}\label{classProduit_a5f3c3093a4da08326e4b45c1faf781dc}
+
+\item 
+\hypertarget{classProduit_a84217d61e98deed8a84bdff1f3b3f0f6}{void {\bfseries set\-Prix} (int prix)}\label{classProduit_a84217d61e98deed8a84bdff1f3b3f0f6}
+
+\item 
+\hypertarget{classProduit_ad48ae2fb835f6819b45a987b6ed400c1}{void {\bfseries set\-Quantite} (int quantite)}\label{classProduit_ad48ae2fb835f6819b45a987b6ed400c1}
+
+\item 
+\hypertarget{classProduit_ad457c563ee0a5e69159f642f9fa831b5}{void {\bfseries set\-Etat} (\hyperlink{classStateProduit}{State\-Produit} $\ast$s)}\label{classProduit_ad457c563ee0a5e69159f642f9fa831b5}
+
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classProduit_ad116eeba9bbfc17a03f290ad48b408c0}{std\-::ostream \& \hyperlink{classProduit_ad116eeba9bbfc17a03f290ad48b408c0}{operator$<$$<$} (std\-::ostream \&, const \hyperlink{classProduit}{Produit} \&)}\label{classProduit_ad116eeba9bbfc17a03f290ad48b408c0}
+
+\begin{DoxyCompactList}\small\item\em Redéfinit l'opérateur $<$$<$ pour l'affichage. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classe gérant les champs des produits et les appels aux fonctions de leurs états. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classProduit_af2869859ed8b99b3034ae92db555914b}{\index{Produit@{Produit}!Produit@{Produit}}
+\index{Produit@{Produit}!Produit@{Produit}}
+\subsubsection[{Produit}]{\setlength{\rightskip}{0pt plus 5cm}Produit\-::\-Produit (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classProduit_af2869859ed8b99b3034ae92db555914b}
+
+
+Crée un produit par défaut avec ses champs initialisés. 
+
+Etat actuel du produit (En ente directe / Vente aux enchères) \hypertarget{classProduit_aacb79a75a6e14e6ac99f82f4736fcb07}{\index{Produit@{Produit}!Produit@{Produit}}
+\index{Produit@{Produit}!Produit@{Produit}}
+\subsubsection[{Produit}]{\setlength{\rightskip}{0pt plus 5cm}Produit\-::\-Produit (
+\begin{DoxyParamCaption}
+\item[{int}]{i, }
+\item[{std\-::string}]{n, }
+\item[{int}]{p, }
+\item[{int}]{q, }
+\item[{bool}]{enchere}
+\end{DoxyParamCaption}
+)}}\label{classProduit_aacb79a75a6e14e6ac99f82f4736fcb07}
+
+
+Crée un produit avec ses infos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Les} & infos du produit \-: enchere (true) =$>$ Vente aux enchères \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+include/Produit.\-hpp\end{DoxyCompactItemize}

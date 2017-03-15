@@ -1,0 +1,317 @@
+\hypertarget{classUtilisateur}{\section{Utilisateur Class Reference}
+\label{classUtilisateur}\index{Utilisateur@{Utilisateur}}
+}
+
+
+Classe \hyperlink{classUtilisateur}{Utilisateur}, gérant toutes les données et les appels aux fonctions de son état. On stockera des instances de cette classe dans la bdd.  
+
+
+
+
+{\ttfamily \#include $<$Utilisateur.\-hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classUtilisateur_ae76433a6d353c5f5ad0c6a6af64022ad}{Utilisateur} ()
+\item 
+\hyperlink{classUtilisateur_af766969b6d93c1e1dfda7d887fbf067d}{Utilisateur} (const \hyperlink{classUtilisateur}{Utilisateur} \&au)
+\item 
+\hyperlink{classUtilisateur_a6631539ceecd6140fe525eb91485537b}{$\sim$\-Utilisateur} ()
+\item 
+\hypertarget{classUtilisateur_a52c851867029c05a86b88853e00728e5}{std\-::string {\bfseries get\-Nom} () const }\label{classUtilisateur_a52c851867029c05a86b88853e00728e5}
+
+\item 
+\hypertarget{classUtilisateur_acfc6e7e8bfedf7456f74f9fba388fbe6}{std\-::string {\bfseries get\-Prenom} () const }\label{classUtilisateur_acfc6e7e8bfedf7456f74f9fba388fbe6}
+
+\item 
+\hypertarget{classUtilisateur_aaadcbac2ce02ef4bf9e060cc4cfadcc4}{std\-::string {\bfseries get\-Pseudo} () const }\label{classUtilisateur_aaadcbac2ce02ef4bf9e060cc4cfadcc4}
+
+\item 
+\hypertarget{classUtilisateur_a86643f2169c336c651612c11bf1b5a1e}{std\-::string {\bfseries get\-Mail} () const }\label{classUtilisateur_a86643f2169c336c651612c11bf1b5a1e}
+
+\item 
+\hypertarget{classUtilisateur_a74f21491b1263a248a8bae866d7386f2}{std\-::string {\bfseries get\-Mot\-De\-Passe} () const }\label{classUtilisateur_a74f21491b1263a248a8bae866d7386f2}
+
+\item 
+\hypertarget{classUtilisateur_a7756213c6af661d8e706e2295f0b8675}{std\-::string {\bfseries get\-Adresse\-Num} () const }\label{classUtilisateur_a7756213c6af661d8e706e2295f0b8675}
+
+\item 
+\hypertarget{classUtilisateur_a9869999edde2e38fb84aa731a60e2a4f}{std\-::string {\bfseries get\-Adresse\-C\-P} () const }\label{classUtilisateur_a9869999edde2e38fb84aa731a60e2a4f}
+
+\item 
+\hypertarget{classUtilisateur_ac61cba367187cb88c9d6d170ec7f9bad}{std\-::string {\bfseries get\-Adresse\-Ville} () const }\label{classUtilisateur_ac61cba367187cb88c9d6d170ec7f9bad}
+
+\item 
+\hypertarget{classUtilisateur_a5a79bcadd84048cd84e227308b51ae01}{std\-::string {\bfseries get\-Numero} () const }\label{classUtilisateur_a5a79bcadd84048cd84e227308b51ae01}
+
+\item 
+\hypertarget{classUtilisateur_a3f2d52048f66f37a0caaf4d1872664a2}{\hyperlink{classStateUtilisateur}{State\-Utilisateur} $\ast$ {\bfseries get\-Etat} ()}\label{classUtilisateur_a3f2d52048f66f37a0caaf4d1872664a2}
+
+\item 
+\hypertarget{classUtilisateur_ae64c47038e5786dfb003e755b1e1f432}{std\-::vector$<$ int $>$ {\bfseries get\-Histo\-Achat} () const }\label{classUtilisateur_ae64c47038e5786dfb003e755b1e1f432}
+
+\item 
+\hypertarget{classUtilisateur_a3c8c96807432b68f5f2aa0f4e01e8ce1}{std\-::vector$<$ int $>$ {\bfseries get\-Histo\-Vente} () const }\label{classUtilisateur_a3c8c96807432b68f5f2aa0f4e01e8ce1}
+
+\item 
+\hypertarget{classUtilisateur_a85dc60f77b270d74b7fa33147804575a}{\hyperlink{classBdd}{Bdd} $\ast$ {\bfseries get\-Bdd} () const }\label{classUtilisateur_a85dc60f77b270d74b7fa33147804575a}
+
+\item 
+\hyperlink{classProduit}{Produit} $\ast$ \hyperlink{classUtilisateur_aa62e585189589dc77a7edaf5afb3b7e4}{get\-Produit} (int id)
+\begin{DoxyCompactList}\small\item\em Utilisée à des fin de réduction de couplage. \end{DoxyCompactList}\item 
+\hypertarget{classUtilisateur_ae087f4d94434085de46f7b4698f2ee1f}{\hyperlink{classUtilisateur}{Utilisateur} $\ast$ {\bfseries get\-Utilisateur} (std\-::string nom\-Util, std\-::string mdp)}\label{classUtilisateur_ae087f4d94434085de46f7b4698f2ee1f}
+
+\item 
+\hypertarget{classUtilisateur_a17f8432b3d5e6e6fafb839926a16d1d8}{void {\bfseries set\-Bdd} (\hyperlink{classBdd}{Bdd} $\ast$b)}\label{classUtilisateur_a17f8432b3d5e6e6fafb839926a16d1d8}
+
+\item 
+\hypertarget{classUtilisateur_a22ffb78a049164a0a6f43e552d2cc933}{void {\bfseries set\-Etat} (\hyperlink{classStateUtilisateur}{State\-Utilisateur} $\ast$s)}\label{classUtilisateur_a22ffb78a049164a0a6f43e552d2cc933}
+
+\item 
+\hypertarget{classUtilisateur_a20a32b47f2b080a4aead49e16bd06f44}{void {\bfseries set\-Nom} (std\-::string n)}\label{classUtilisateur_a20a32b47f2b080a4aead49e16bd06f44}
+
+\item 
+\hypertarget{classUtilisateur_a82c09ccdcb2449ee5a9938bb716938b6}{void {\bfseries set\-Prenom} (std\-::string p)}\label{classUtilisateur_a82c09ccdcb2449ee5a9938bb716938b6}
+
+\item 
+\hypertarget{classUtilisateur_a8463c077b33ccc93c8e424a47b9bc369}{void {\bfseries set\-Pseudo} (std\-::string p)}\label{classUtilisateur_a8463c077b33ccc93c8e424a47b9bc369}
+
+\item 
+\hypertarget{classUtilisateur_a895f56e8a99f17da4953be6c790376aa}{void {\bfseries set\-Mail} (std\-::string m)}\label{classUtilisateur_a895f56e8a99f17da4953be6c790376aa}
+
+\item 
+\hypertarget{classUtilisateur_acb7689c9ca689a7915db6ddb163059ff}{void {\bfseries set\-Mot\-De\-Passe} (std\-::string mdp)}\label{classUtilisateur_acb7689c9ca689a7915db6ddb163059ff}
+
+\item 
+\hypertarget{classUtilisateur_aac03cf860595ffdac27ff2083f9ad28a}{void {\bfseries set\-Adresse\-Num} (std\-::string an)}\label{classUtilisateur_aac03cf860595ffdac27ff2083f9ad28a}
+
+\item 
+\hypertarget{classUtilisateur_a1ba2bb63014f22021c5de1d171658a57}{void {\bfseries set\-Adresse\-C\-P} (std\-::string acp)}\label{classUtilisateur_a1ba2bb63014f22021c5de1d171658a57}
+
+\item 
+\hypertarget{classUtilisateur_a70e72c792ef91b0007d6bfa8736a20b3}{void {\bfseries set\-Adresse\-Ville} (std\-::string av)}\label{classUtilisateur_a70e72c792ef91b0007d6bfa8736a20b3}
+
+\item 
+\hypertarget{classUtilisateur_a540cd06e80e20d97eda548ad25670c79}{void {\bfseries set\-Numero} (std\-::string n)}\label{classUtilisateur_a540cd06e80e20d97eda548ad25670c79}
+
+\item 
+void \hyperlink{classUtilisateur_a5e2d22fa977ec78efaeff34ba404878c}{add\-Histo\-Achat} (int id)
+\begin{DoxyCompactList}\small\item\em Ajoute un produit dans l'historique d'achat de l'utilisateur. \end{DoxyCompactList}\item 
+void \hyperlink{classUtilisateur_a23adc8461a76f9816dac9f87f2adb135}{add\-Histo\-Vente} (int id)
+\begin{DoxyCompactList}\small\item\em Ajoute un produit dans l'historique de vente de l'utilisateur. \end{DoxyCompactList}\item 
+void \hyperlink{classUtilisateur_ac586ef4afa8c85f56cca3c688732bb81}{creer\-Compte} (std\-::string $\ast$infos)
+\begin{DoxyCompactList}\small\item\em Crée un compte et l'ajoute à la bdd. \end{DoxyCompactList}\item 
+\hypertarget{classUtilisateur_ac10b85517b5b34b1357744a495537165}{void \hyperlink{classUtilisateur_ac10b85517b5b34b1357744a495537165}{vider} ()}\label{classUtilisateur_ac10b85517b5b34b1357744a495537165}
+
+\begin{DoxyCompactList}\small\item\em Vide les champs de l'utilisateur (Peut être utilisé pour décrire un utilisateur déconnecté) \end{DoxyCompactList}\item 
+void \hyperlink{classUtilisateur_a41b0d5ff30d82c9f68110fb6687f449a}{connexion} (std\-::string pseudo, std\-::string mdp)
+\begin{DoxyCompactList}\small\item\em Définit l'utilisateur comme connecté \end{DoxyCompactList}\item 
+\hypertarget{classUtilisateur_aed5a9ebdb82025692fa06622d9239cf7}{void \hyperlink{classUtilisateur_aed5a9ebdb82025692fa06622d9239cf7}{deconnexion} ()}\label{classUtilisateur_aed5a9ebdb82025692fa06622d9239cf7}
+
+\begin{DoxyCompactList}\small\item\em Définit l'utilisateur comme déconnecté \end{DoxyCompactList}\item 
+void \hyperlink{classUtilisateur_a8e1e62cea60f42ea9f49ff117ff5cca5}{acheter\-Produit} (int id, int quantite)
+\begin{DoxyCompactList}\small\item\em Achète un produit (dans les faits, ajoute le produit dans l'historique d'achats de l'utilisateur et décremente la quantité disponible de ce produit) \end{DoxyCompactList}\item 
+void \hyperlink{classUtilisateur_ad54f3dac53d8dc7354bd99bab58a918a}{encherir} (int id, int prix)
+\begin{DoxyCompactList}\small\item\em Enchérit sur un produit (dans les faits, met à jour le prix du produit) \end{DoxyCompactList}\item 
+void \hyperlink{classUtilisateur_a8eafd96aa8fe49caaaaa7e4c110c574d}{vendre\-Produit} (int i, std\-::string nom, int prix, int quantite, bool enchere)
+\begin{DoxyCompactList}\small\item\em Ajoute un produit à la vente (Dans la bdd) \end{DoxyCompactList}\item 
+std\-::vector$<$ \hyperlink{classProduit}{Produit} $>$ \hyperlink{classUtilisateur_add6128062f713daa111f1fc7efb055ef}{rechercher\-Produit} (std\-::string search)
+\begin{DoxyCompactList}\small\item\em Permet de rechercher un produit dans la bdd. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classUtilisateur_a6348fd62a39930c3de004f84e1c06fbe}{std\-::ostream \& \hyperlink{classUtilisateur_a6348fd62a39930c3de004f84e1c06fbe}{operator$<$$<$} (std\-::ostream \&, const \hyperlink{classUtilisateur}{Utilisateur} \&)}\label{classUtilisateur_a6348fd62a39930c3de004f84e1c06fbe}
+
+\begin{DoxyCompactList}\small\item\em Redéfinit l'opérateur $<$$<$ pour pouvoir afficher simplement les utilisateurs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classe \hyperlink{classUtilisateur}{Utilisateur}, gérant toutes les données et les appels aux fonctions de son état. On stockera des instances de cette classe dans la bdd. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classUtilisateur_ae76433a6d353c5f5ad0c6a6af64022ad}{\index{Utilisateur@{Utilisateur}!Utilisateur@{Utilisateur}}
+\index{Utilisateur@{Utilisateur}!Utilisateur@{Utilisateur}}
+\subsubsection[{Utilisateur}]{\setlength{\rightskip}{0pt plus 5cm}Utilisateur\-::\-Utilisateur (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classUtilisateur_ae76433a6d353c5f5ad0c6a6af64022ad}
+Pointeur sur un état (Connecté ou pas) de l'utilisateur Crée un utilisateur vide et déconnecté \hypertarget{classUtilisateur_af766969b6d93c1e1dfda7d887fbf067d}{\index{Utilisateur@{Utilisateur}!Utilisateur@{Utilisateur}}
+\index{Utilisateur@{Utilisateur}!Utilisateur@{Utilisateur}}
+\subsubsection[{Utilisateur}]{\setlength{\rightskip}{0pt plus 5cm}Utilisateur\-::\-Utilisateur (
+\begin{DoxyParamCaption}
+\item[{const {\bf Utilisateur} \&}]{au}
+\end{DoxyParamCaption}
+)}}\label{classUtilisateur_af766969b6d93c1e1dfda7d887fbf067d}
+Constructeur de copie (défaut déconnecté) \hypertarget{classUtilisateur_a6631539ceecd6140fe525eb91485537b}{\index{Utilisateur@{Utilisateur}!$\sim$\-Utilisateur@{$\sim$\-Utilisateur}}
+\index{$\sim$\-Utilisateur@{$\sim$\-Utilisateur}!Utilisateur@{Utilisateur}}
+\subsubsection[{$\sim$\-Utilisateur}]{\setlength{\rightskip}{0pt plus 5cm}Utilisateur\-::$\sim$\-Utilisateur (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classUtilisateur_a6631539ceecd6140fe525eb91485537b}
+Détruit un \hyperlink{classUtilisateur}{Utilisateur} en libérant le pointeur sur son état 
+
+\subsection{Member Function Documentation}
+\hypertarget{classUtilisateur_a8e1e62cea60f42ea9f49ff117ff5cca5}{\index{Utilisateur@{Utilisateur}!acheter\-Produit@{acheter\-Produit}}
+\index{acheter\-Produit@{acheter\-Produit}!Utilisateur@{Utilisateur}}
+\subsubsection[{acheter\-Produit}]{\setlength{\rightskip}{0pt plus 5cm}void Utilisateur\-::acheter\-Produit (
+\begin{DoxyParamCaption}
+\item[{int}]{id, }
+\item[{int}]{quantite}
+\end{DoxyParamCaption}
+)}}\label{classUtilisateur_a8e1e62cea60f42ea9f49ff117ff5cca5}
+
+
+Achète un produit (dans les faits, ajoute le produit dans l'historique d'achats de l'utilisateur et décremente la quantité disponible de ce produit) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \-: id du produit \\
+\hline
+{\em quantite} & \-: nombre de \hyperlink{classProduit}{Produit} qu'on achète \\
+\hline
+\end{DoxyParams}
+\hypertarget{classUtilisateur_a5e2d22fa977ec78efaeff34ba404878c}{\index{Utilisateur@{Utilisateur}!add\-Histo\-Achat@{add\-Histo\-Achat}}
+\index{add\-Histo\-Achat@{add\-Histo\-Achat}!Utilisateur@{Utilisateur}}
+\subsubsection[{add\-Histo\-Achat}]{\setlength{\rightskip}{0pt plus 5cm}void Utilisateur\-::add\-Histo\-Achat (
+\begin{DoxyParamCaption}
+\item[{int}]{id}
+\end{DoxyParamCaption}
+)}}\label{classUtilisateur_a5e2d22fa977ec78efaeff34ba404878c}
+
+
+Ajoute un produit dans l'historique d'achat de l'utilisateur. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \-: l'id d'un produit à ajouter \\
+\hline
+\end{DoxyParams}
+\hypertarget{classUtilisateur_a23adc8461a76f9816dac9f87f2adb135}{\index{Utilisateur@{Utilisateur}!add\-Histo\-Vente@{add\-Histo\-Vente}}
+\index{add\-Histo\-Vente@{add\-Histo\-Vente}!Utilisateur@{Utilisateur}}
+\subsubsection[{add\-Histo\-Vente}]{\setlength{\rightskip}{0pt plus 5cm}void Utilisateur\-::add\-Histo\-Vente (
+\begin{DoxyParamCaption}
+\item[{int}]{id}
+\end{DoxyParamCaption}
+)}}\label{classUtilisateur_a23adc8461a76f9816dac9f87f2adb135}
+
+
+Ajoute un produit dans l'historique de vente de l'utilisateur. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \-: l'id d'un produit à ajouter \\
+\hline
+\end{DoxyParams}
+\hypertarget{classUtilisateur_a41b0d5ff30d82c9f68110fb6687f449a}{\index{Utilisateur@{Utilisateur}!connexion@{connexion}}
+\index{connexion@{connexion}!Utilisateur@{Utilisateur}}
+\subsubsection[{connexion}]{\setlength{\rightskip}{0pt plus 5cm}void Utilisateur\-::connexion (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{pseudo, }
+\item[{std\-::string}]{mdp}
+\end{DoxyParamCaption}
+)}}\label{classUtilisateur_a41b0d5ff30d82c9f68110fb6687f449a}
+
+
+Définit l'utilisateur comme connecté 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Infos} & de connexions de l'utilisateur \\
+\hline
+\end{DoxyParams}
+\hypertarget{classUtilisateur_ac586ef4afa8c85f56cca3c688732bb81}{\index{Utilisateur@{Utilisateur}!creer\-Compte@{creer\-Compte}}
+\index{creer\-Compte@{creer\-Compte}!Utilisateur@{Utilisateur}}
+\subsubsection[{creer\-Compte}]{\setlength{\rightskip}{0pt plus 5cm}void Utilisateur\-::creer\-Compte (
+\begin{DoxyParamCaption}
+\item[{std\-::string $\ast$}]{infos}
+\end{DoxyParamCaption}
+)}}\label{classUtilisateur_ac586ef4afa8c85f56cca3c688732bb81}
+
+
+Crée un compte et l'ajoute à la bdd. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em infos} & \-: Tableau de strings contenant les infos de compte de l'utilisateur \\
+\hline
+\end{DoxyParams}
+\hypertarget{classUtilisateur_ad54f3dac53d8dc7354bd99bab58a918a}{\index{Utilisateur@{Utilisateur}!encherir@{encherir}}
+\index{encherir@{encherir}!Utilisateur@{Utilisateur}}
+\subsubsection[{encherir}]{\setlength{\rightskip}{0pt plus 5cm}void Utilisateur\-::encherir (
+\begin{DoxyParamCaption}
+\item[{int}]{id, }
+\item[{int}]{prix}
+\end{DoxyParamCaption}
+)}}\label{classUtilisateur_ad54f3dac53d8dc7354bd99bab58a918a}
+
+
+Enchérit sur un produit (dans les faits, met à jour le prix du produit) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \-: id du produit \\
+\hline
+{\em prix} & \-: nouveau prix proposé (refusé si trop bas) \\
+\hline
+\end{DoxyParams}
+\hypertarget{classUtilisateur_aa62e585189589dc77a7edaf5afb3b7e4}{\index{Utilisateur@{Utilisateur}!get\-Produit@{get\-Produit}}
+\index{get\-Produit@{get\-Produit}!Utilisateur@{Utilisateur}}
+\subsubsection[{get\-Produit}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Produit}$\ast$ Utilisateur\-::get\-Produit (
+\begin{DoxyParamCaption}
+\item[{int}]{id}
+\end{DoxyParamCaption}
+)}}\label{classUtilisateur_aa62e585189589dc77a7edaf5afb3b7e4}
+
+
+Utilisée à des fin de réduction de couplage. 
+
+\begin{DoxyReturn}{Returns}
+Un produit de la bdd 
+\end{DoxyReturn}
+\hypertarget{classUtilisateur_add6128062f713daa111f1fc7efb055ef}{\index{Utilisateur@{Utilisateur}!rechercher\-Produit@{rechercher\-Produit}}
+\index{rechercher\-Produit@{rechercher\-Produit}!Utilisateur@{Utilisateur}}
+\subsubsection[{rechercher\-Produit}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<${\bf Produit}$>$ Utilisateur\-::rechercher\-Produit (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{search}
+\end{DoxyParamCaption}
+)}}\label{classUtilisateur_add6128062f713daa111f1fc7efb055ef}
+
+
+Permet de rechercher un produit dans la bdd. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em search} & \-: terme à rechercher \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un vector de \hyperlink{classProduit}{Produit} 
+\end{DoxyReturn}
+\hypertarget{classUtilisateur_a8eafd96aa8fe49caaaaa7e4c110c574d}{\index{Utilisateur@{Utilisateur}!vendre\-Produit@{vendre\-Produit}}
+\index{vendre\-Produit@{vendre\-Produit}!Utilisateur@{Utilisateur}}
+\subsubsection[{vendre\-Produit}]{\setlength{\rightskip}{0pt plus 5cm}void Utilisateur\-::vendre\-Produit (
+\begin{DoxyParamCaption}
+\item[{int}]{i, }
+\item[{std\-::string}]{nom, }
+\item[{int}]{prix, }
+\item[{int}]{quantite, }
+\item[{bool}]{enchere}
+\end{DoxyParamCaption}
+)}}\label{classUtilisateur_a8eafd96aa8fe49caaaaa7e4c110c574d}
+
+
+Ajoute un produit à la vente (Dans la bdd) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Les} & infos du produit à ajouter \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+include/Utilisateur.\-hpp\end{DoxyCompactItemize}

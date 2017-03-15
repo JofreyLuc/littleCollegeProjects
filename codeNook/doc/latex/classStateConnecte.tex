@@ -1,0 +1,109 @@
+\hypertarget{classStateConnecte}{\section{State\-Connecte Class Reference}
+\label{classStateConnecte}\index{State\-Connecte@{State\-Connecte}}
+}
+
+
+Classe concrète de l'état connecté des Utilisateurs.  
+
+
+
+
+{\ttfamily \#include $<$State\-Connecte.\-hpp$>$}
+
+Inheritance diagram for State\-Connecte\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classStateConnecte}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classStateConnecte_a50922448c2191a173fae252dc32bc249}{State\-Connecte} (\hyperlink{classUtilisateur}{Utilisateur} $\ast$cont)
+\begin{DoxyCompactList}\small\item\em Crée une instance d'état connecté pour l'\hyperlink{classUtilisateur}{Utilisateur} cont. \end{DoxyCompactList}\item 
+\hypertarget{classStateConnecte_a2d03971c5edf05616d2faa5afba90925}{virtual void \hyperlink{classStateConnecte_a2d03971c5edf05616d2faa5afba90925}{deconnexion} ()}\label{classStateConnecte_a2d03971c5edf05616d2faa5afba90925}
+
+\begin{DoxyCompactList}\small\item\em Permet de déconnecter un \hyperlink{classUtilisateur}{Utilisateur} connecté \end{DoxyCompactList}\item 
+virtual std\-::string \hyperlink{classStateConnecte_aba8d7baa6105179fc820488532ee6914}{get\-Nom\-Etat} () const 
+\begin{DoxyCompactList}\small\item\em Récupère le nom de l'état actuel de l'\hyperlink{classUtilisateur}{Utilisateur}. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classStateConnecte_a2c51f0790e9def5f4dcce2195af6c550}{vendre\-Produit} (int i, std\-::string nom, int prix, int quantite, bool enchere)
+\begin{DoxyCompactList}\small\item\em Permet à un \hyperlink{classUtilisateur}{Utilisateur} connecté de vendre un \hyperlink{classProduit}{Produit}. \end{DoxyCompactList}\item 
+\hypertarget{classStateConnecte_ab23a2c01a9e9a8116fa0add4a10cc798}{virtual void \hyperlink{classStateConnecte_ab23a2c01a9e9a8116fa0add4a10cc798}{acheter\-Produit} (int id, int quantite)}\label{classStateConnecte_ab23a2c01a9e9a8116fa0add4a10cc798}
+
+\begin{DoxyCompactList}\small\item\em Permet à un \hyperlink{classUtilisateur}{Utilisateur} connecté d'acheter un \hyperlink{classProduit}{Produit} id. \end{DoxyCompactList}\item 
+\hypertarget{classStateConnecte_a089f92126a87eaab2d4f070a9cdbdab9}{virtual void \hyperlink{classStateConnecte_a089f92126a87eaab2d4f070a9cdbdab9}{encherir} (int id, int prix)}\label{classStateConnecte_a089f92126a87eaab2d4f070a9cdbdab9}
+
+\begin{DoxyCompactList}\small\item\em Permet à un \hyperlink{classUtilisateur}{Utilisateur} connecté d'enchérir sur un \hyperlink{classProduit}{Produit} id. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Classe concrète de l'état connecté des Utilisateurs. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classStateConnecte_a50922448c2191a173fae252dc32bc249}{\index{State\-Connecte@{State\-Connecte}!State\-Connecte@{State\-Connecte}}
+\index{State\-Connecte@{State\-Connecte}!StateConnecte@{State\-Connecte}}
+\subsubsection[{State\-Connecte}]{\setlength{\rightskip}{0pt plus 5cm}State\-Connecte\-::\-State\-Connecte (
+\begin{DoxyParamCaption}
+\item[{{\bf Utilisateur} $\ast$}]{cont}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classStateConnecte_a50922448c2191a173fae252dc32bc249}
+
+
+Crée une instance d'état connecté pour l'\hyperlink{classUtilisateur}{Utilisateur} cont. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cont} & \-: un pointeur sur un \hyperlink{classUtilisateur}{Utilisateur} \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classStateConnecte_aba8d7baa6105179fc820488532ee6914}{\index{State\-Connecte@{State\-Connecte}!get\-Nom\-Etat@{get\-Nom\-Etat}}
+\index{get\-Nom\-Etat@{get\-Nom\-Etat}!StateConnecte@{State\-Connecte}}
+\subsubsection[{get\-Nom\-Etat}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\-::string State\-Connecte\-::get\-Nom\-Etat (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classStateConnecte_aba8d7baa6105179fc820488532ee6914}
+
+
+Récupère le nom de l'état actuel de l'\hyperlink{classUtilisateur}{Utilisateur}. 
+
+\begin{DoxyReturn}{Returns}
+Un string contenant l'état 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classStateUtilisateur_aa0905985b352d22fd18ecbfae5d319a8}{State\-Utilisateur}.
+
+\hypertarget{classStateConnecte_a2c51f0790e9def5f4dcce2195af6c550}{\index{State\-Connecte@{State\-Connecte}!vendre\-Produit@{vendre\-Produit}}
+\index{vendre\-Produit@{vendre\-Produit}!StateConnecte@{State\-Connecte}}
+\subsubsection[{vendre\-Produit}]{\setlength{\rightskip}{0pt plus 5cm}virtual void State\-Connecte\-::vendre\-Produit (
+\begin{DoxyParamCaption}
+\item[{int}]{i, }
+\item[{std\-::string}]{nom, }
+\item[{int}]{prix, }
+\item[{int}]{quantite, }
+\item[{bool}]{enchere}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classStateConnecte_a2c51f0790e9def5f4dcce2195af6c550}
+
+
+Permet à un \hyperlink{classUtilisateur}{Utilisateur} connecté de vendre un \hyperlink{classProduit}{Produit}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Les} & infos du \hyperlink{classProduit}{Produit} \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classStateUtilisateur_aa039ece92cb1663b9badf6ce4926fe1c}{State\-Utilisateur}.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+include/State\-Connecte.\-hpp\end{DoxyCompactItemize}

@@ -1,0 +1,121 @@
+\hypertarget{classStateDeconnecte}{\section{State\-Deconnecte Class Reference}
+\label{classStateDeconnecte}\index{State\-Deconnecte@{State\-Deconnecte}}
+}
+
+
+Classe concrète de l'état déconnecté des Utilisateurs.  
+
+
+
+
+{\ttfamily \#include $<$State\-Deconnecte.\-hpp$>$}
+
+Inheritance diagram for State\-Deconnecte\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classStateDeconnecte}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classStateDeconnecte_a2f4fe61f40b06f055911b92e6a8a7ee8}{State\-Deconnecte} (\hyperlink{classUtilisateur}{Utilisateur} $\ast$cont)
+\begin{DoxyCompactList}\small\item\em Crée une instance d'état déconnecté pour l'\hyperlink{classUtilisateur}{Utilisateur} cont. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classStateDeconnecte_af7a2a59f8b4fb3abe585a013cefa360a}{connexion} (std\-::string nom\-Util, std\-::string mdp)
+\begin{DoxyCompactList}\small\item\em Permet de connecter un \hyperlink{classUtilisateur}{Utilisateur} déconnecté \end{DoxyCompactList}\item 
+virtual void \hyperlink{classStateDeconnecte_a310df467d4d531402ee11b1d8469d1b6}{creer\-Compte} (std\-::string $\ast$infos)
+\begin{DoxyCompactList}\small\item\em Permet de set les infos de l'\hyperlink{classUtilisateur}{Utilisateur}. \end{DoxyCompactList}\item 
+virtual std\-::string \hyperlink{classStateDeconnecte_ac343c36edc1c66cf4b06b50b8b874654}{get\-Nom\-Etat} () const 
+\begin{DoxyCompactList}\small\item\em Récupère le nom de l'état actuel de l'\hyperlink{classUtilisateur}{Utilisateur}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Classe concrète de l'état déconnecté des Utilisateurs. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classStateDeconnecte_a2f4fe61f40b06f055911b92e6a8a7ee8}{\index{State\-Deconnecte@{State\-Deconnecte}!State\-Deconnecte@{State\-Deconnecte}}
+\index{State\-Deconnecte@{State\-Deconnecte}!StateDeconnecte@{State\-Deconnecte}}
+\subsubsection[{State\-Deconnecte}]{\setlength{\rightskip}{0pt plus 5cm}State\-Deconnecte\-::\-State\-Deconnecte (
+\begin{DoxyParamCaption}
+\item[{{\bf Utilisateur} $\ast$}]{cont}
+\end{DoxyParamCaption}
+)}}\label{classStateDeconnecte_a2f4fe61f40b06f055911b92e6a8a7ee8}
+
+
+Crée une instance d'état déconnecté pour l'\hyperlink{classUtilisateur}{Utilisateur} cont. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cont} & \-: un pointeur sur un \hyperlink{classUtilisateur}{Utilisateur} \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classStateDeconnecte_af7a2a59f8b4fb3abe585a013cefa360a}{\index{State\-Deconnecte@{State\-Deconnecte}!connexion@{connexion}}
+\index{connexion@{connexion}!StateDeconnecte@{State\-Deconnecte}}
+\subsubsection[{connexion}]{\setlength{\rightskip}{0pt plus 5cm}virtual void State\-Deconnecte\-::connexion (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{pseudo, }
+\item[{std\-::string}]{mdp}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classStateDeconnecte_af7a2a59f8b4fb3abe585a013cefa360a}
+
+
+Permet de connecter un \hyperlink{classUtilisateur}{Utilisateur} déconnecté 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nom\-Util} & \-: nom d'utilisateur, pseudo ou mail ? \\
+\hline
+{\em mdp} & \-: mot de passe, en clair \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classStateUtilisateur_acf5e22c491f018f44114b4de2e22cba2}{State\-Utilisateur}.
+
+\hypertarget{classStateDeconnecte_a310df467d4d531402ee11b1d8469d1b6}{\index{State\-Deconnecte@{State\-Deconnecte}!creer\-Compte@{creer\-Compte}}
+\index{creer\-Compte@{creer\-Compte}!StateDeconnecte@{State\-Deconnecte}}
+\subsubsection[{creer\-Compte}]{\setlength{\rightskip}{0pt plus 5cm}virtual void State\-Deconnecte\-::creer\-Compte (
+\begin{DoxyParamCaption}
+\item[{std\-::string $\ast$}]{infos}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classStateDeconnecte_a310df467d4d531402ee11b1d8469d1b6}
+
+
+Permet de set les infos de l'\hyperlink{classUtilisateur}{Utilisateur}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em infos} & \-: un tableau de string contenant les infos du compte (nom, prénom, etc.) \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classStateUtilisateur_a46a74017e52db98001f089e67f4dd7d1}{State\-Utilisateur}.
+
+\hypertarget{classStateDeconnecte_ac343c36edc1c66cf4b06b50b8b874654}{\index{State\-Deconnecte@{State\-Deconnecte}!get\-Nom\-Etat@{get\-Nom\-Etat}}
+\index{get\-Nom\-Etat@{get\-Nom\-Etat}!StateDeconnecte@{State\-Deconnecte}}
+\subsubsection[{get\-Nom\-Etat}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\-::string State\-Deconnecte\-::get\-Nom\-Etat (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classStateDeconnecte_ac343c36edc1c66cf4b06b50b8b874654}
+
+
+Récupère le nom de l'état actuel de l'\hyperlink{classUtilisateur}{Utilisateur}. 
+
+\begin{DoxyReturn}{Returns}
+Un string contenant l'état 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classStateUtilisateur_aa0905985b352d22fd18ecbfae5d319a8}{State\-Utilisateur}.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+include/State\-Deconnecte.\-hpp\end{DoxyCompactItemize}

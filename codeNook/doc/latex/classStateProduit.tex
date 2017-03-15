@@ -1,0 +1,84 @@
+\hypertarget{classStateProduit}{\section{State\-Produit Class Reference}
+\label{classStateProduit}\index{State\-Produit@{State\-Produit}}
+}
+
+
+Classe abstraite qui sera héritée par les états concrets (Normal et Enchères) Dans notre implémentation, un \hyperlink{classProduit}{Produit} connait un Etat à la fois. Cet Etat connait lui aussi le \hyperlink{classProduit}{Produit}, passé en paramètre du constructeur, pour pouvoir appeler ses fonctions localement. L'état étant propre à une instance de \hyperlink{classProduit}{Produit}, c'est \hyperlink{classProduit}{Produit} qui se chargera de le détruire.  
+
+
+
+
+{\ttfamily \#include $<$State\-Produit.\-hpp$>$}
+
+Inheritance diagram for State\-Produit\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classStateProduit}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\-::string \hyperlink{classStateProduit_aada1a1cc10d67e886b96322683c05411}{get\-Nom\-Etat} () const =0
+\begin{DoxyCompactList}\small\item\em Permet de récupérer le nom d'un état. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classStateProduit_ae79072739c68f66c8b39958a376b6c3f}{State\-Produit} (\hyperlink{classProduit}{Produit} $\ast$cont)
+\begin{DoxyCompactList}\small\item\em Crée un état sur un \hyperlink{classProduit}{Produit}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classStateProduit_acc1a34648aacca5b0646c5b7369e14ba}{\hyperlink{classProduit}{Produit} $\ast$ {\bfseries \-\_\-context}}\label{classStateProduit_acc1a34648aacca5b0646c5b7369e14ba}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classe abstraite qui sera héritée par les états concrets (Normal et Enchères) Dans notre implémentation, un \hyperlink{classProduit}{Produit} connait un Etat à la fois. Cet Etat connait lui aussi le \hyperlink{classProduit}{Produit}, passé en paramètre du constructeur, pour pouvoir appeler ses fonctions localement. L'état étant propre à une instance de \hyperlink{classProduit}{Produit}, c'est \hyperlink{classProduit}{Produit} qui se chargera de le détruire. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classStateProduit_ae79072739c68f66c8b39958a376b6c3f}{\index{State\-Produit@{State\-Produit}!State\-Produit@{State\-Produit}}
+\index{State\-Produit@{State\-Produit}!StateProduit@{State\-Produit}}
+\subsubsection[{State\-Produit}]{\setlength{\rightskip}{0pt plus 5cm}State\-Produit\-::\-State\-Produit (
+\begin{DoxyParamCaption}
+\item[{{\bf Produit} $\ast$}]{cont}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}}\label{classStateProduit_ae79072739c68f66c8b39958a376b6c3f}
+
+
+Crée un état sur un \hyperlink{classProduit}{Produit}. 
+
+Pointeur sur le \hyperlink{classProduit}{Produit} qui sera associé à cet état
+\begin{DoxyParams}{Parameters}
+{\em cont} & \-: Un pointeur sur un état \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classStateProduit_aada1a1cc10d67e886b96322683c05411}{\index{State\-Produit@{State\-Produit}!get\-Nom\-Etat@{get\-Nom\-Etat}}
+\index{get\-Nom\-Etat@{get\-Nom\-Etat}!StateProduit@{State\-Produit}}
+\subsubsection[{get\-Nom\-Etat}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\-::string State\-Produit\-::get\-Nom\-Etat (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classStateProduit_aada1a1cc10d67e886b96322683c05411}
+
+
+Permet de récupérer le nom d'un état. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em } & le nom de l'état \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classStateEnchere_a2c6ccc2c404381333ed64488568d34aa}{State\-Enchere}, and \hyperlink{classStateNormal_a6e8a998e6c13aafdc49c11eb0907e1ec}{State\-Normal}.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+include/State\-Produit.\-hpp\end{DoxyCompactItemize}

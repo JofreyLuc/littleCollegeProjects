@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Connexion.qml</file>
+        <file>Profil.qml</file>
+        <file>Vente.qml</file>
+        <file>Noter.qml</file>
+        <file>Recherche.qml</file>
+        <file>RechercheU.qml</file>
+        <file>Reclamation.qml</file>
+        <file>Resultat.qml</file>
+        <file>SideBar.qml</file>
+        <file>AltMenuBar.qml</file>
+		<file>imageProduitVide.png</file>
+    </qresource>
+</RCC>
