@@ -1,0 +1,293 @@
+\documentclass{report}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\title{Rapport AC 2017 : Motifs interdits}
+\author{A.Lanoix, J.Luc, Q.Sonrel}
+\date{16 Janvier 2016}
+
+\begin{document}
+
+\maketitle
+
+\section*{Prise en main du problème}
+\subsubsection*{Question 1}
+
+Les assignations qui satisfont $C$ sont :
+
+\begin{itemize}
+    \item $x1 \rightarrow V , x2 \rightarrow V$
+    \item $x1 \rightarrow V , x2 \rightarrow B$
+    \item $x1 \rightarrow B, x2 \rightarrow V$
+    \item $x1 \rightarrow B, x2 \rightarrow R$
+\end{itemize}
+
+\subsubsection*{Question 2}
+
+Supposons que $C$ soit satisfiable donc qu'il existe une assignation $\phi$ telle que $\phi$ satisfait $C$.
+
+Donc, selon $\phi$, $x1 \rightarrow a$ tel que $a \in \left\{R, V, B\right\}$ et selon les contraintes
+\begin{itemize}
+\item[] [(x1, R),(x2, R)] ,
+\item[] [(x1, V),(x2, V)] ,
+\item[] [(x1, B),(x2, B)] ,
+\item[] [(x1, R),(x3, R)] ,
+\item[] [(x1, V),(x3, V)] ,
+\item[] [(x1, B),(x3, B)] ,
+\item[] [(x1, R),(x4, R)] ,
+\item[] [(x1, V),(x4, V)] ,
+\item[] [(x1, B),(x4, B)],
+\end{itemize}
+
+$x2$, $x3$ et $x4 \not\rightarrow a$.\\
+
+Donc selon $\phi$, $x2 \rightarrow b$ tel que $b \neq a$ et $b \in \left\{R, V, B\right\}$ et selon les contraintes
+\begin{itemize}
+\item[] [(x2, R),(x3, R)] ,
+\item[] [(x2, V),(x3, V)] ,
+\item[] [(x2, B),(x3, B)] ,
+\item[] [(x2, R),(x4, R)] ,
+\item[] [(x2, V),(x4, V)] ,
+\item[] [(x2, B),(x4, B)] ,
+\end{itemize}
+$x3$ et $x4 \not\rightarrow b$.\\
+
+Donc selon $\phi$, $x3 \rightarrow c$ tel que $c \neq a$ et $c \neq b$ et $c \in \left\{R, V, B\right\}$ et selon les contraintes
+\begin{itemize}
+\item[] [(x3, R),(x4, R)] ,
+\item[] [(x3, V),(x4, V)] ,
+\item[] [(x3, B),(x4, B)],
+\end{itemize}
+$x4 \not\rightarrow c$.\\
+
+Donc $x4 \rightarrow d$ tel que $d \neq c$ et $d \neq b$ et $d \neq a$ et $d \in \left\{R, V, B\right\}$.\\
+Or,  contradiction : parmi $\left\{R, V, B\right\}$ il est impossible de trouver $a$, $b$, $c$ et $d$ tels qu'ils soient tous différents.\\
+Donc $C$ n'est pas satisfiable.
+
+\section*{Algorithme randomisé}
+\subsubsection*{Question 3}
+
+Si on a deux contraintes [(x, a)] et [(x, b)], et $a \neq b$, alors on peut supprimer les contraintes de la forme [(x, a), (y, ·)] ou [(x, b), (y, ·)] car ces contraintes sont ainsi satisfaites quel que soit (y, ·) vu que $x$ sera nécessairement assigné à $c$, et transformer les contraintes [(x, c), (y, ·)] en [(y, ·)].
+
+\subsubsection*{Question 4}
+
+\begin{itemize}
+\item Eliminer toutes les contraintes de la forme [(x, R),(y, ·)]
+
+La contrainte [(x, R)] nous garantit que $x$ ne sera pas assigné à $R$ - toutes les contraintes de la forme [(x, R),(y, ·)] seront du coup automatiquement satisfaites.
+
+\item Pour tout couple de contraintes [(x, V ),(y, b)] et [(x, B),(z, c)], ajouter la contrainte [(y, b),(z, c)]
+
+  La contrainte [(x, R)] nous garantit que $x$ sera soit assigné à $B$ soit assigné à $V$, on aura donc forcément pour un couple de contraintes [(x, V), (y, b)] et [(x, B),(z, c)] :
+  \begin{itemize}
+  \item[] [(x, V), (y, b)] satisfaite si $x$ est assigné à $B$;
+  \item[] [(x, B), (z, c)] satisfaite si $x$ est assigné à $V$;
+  \end{itemize}    
+    
+Ensuite, selon la valeur qu'on aura assignée à $x$, on aura besoin de valider soit (y, b), soit (z, c), on peut donc ajouter la contrainte [(y, b),(z, c)] sans changer la valeur du problème initial. 
+\end{itemize}
+
+\subsubsection*{Question 5}
+
+\begin{itemize}
+  \item Si $C$ n’est pas satisfiable alors $C'$ n'est pas satisfiable\\\\
+    Si $C$ n'est pas satisfiable aucune assignation ne satisfait $C$.\\
+    Or $C'$ = $C \cup \left\{c1, c2\right\}$ avec $c1$ et $c2$ étant deux contraintes unaires. Donc pour que $C'$ soit satisfiable alors $C$ et $\left\{c1, c2\right\}$ doivent être satisfiables (avec la même assignation).\\
+    $C$ n'est pas satisfiable donc $C'$ n'est pas satisfiable non plus.\\
+
+\item Si $C$ est satisfiable alors $C'$ est satisfiable avec probabilité au moins 1/2\\\\
+Soit $c0$ la première contrainte de $C$ qui est donc de la forme : [(x, a), (y, b)] avec $a, b, c \in \left\{R, V, B\right\}$ et $a \neq b \neq c$
+
+On peut alors :
+
+- ajouter [(x, a)], [(y, a)] (1)
+
+- ajouter [(x, a)], [(y, c)] (2)
+
+- ajouter [(x, c)], [(y, b)] (3)
+
+- ajouter [(x, b)], [(y, b)] (4)
+
+Les assignations satisfaisant $c0$ sont :
+
+\begin{itemize}
+    \item[] $x \rightarrow a$ et $y \rightarrow a$
+    \item[] $x \rightarrow a$ et $y \rightarrow c$
+    \item[] $x \rightarrow b$ et $y \rightarrow a$
+    \item[] $x \rightarrow b$ et $y \rightarrow b$
+    \item[] $x \rightarrow b$ et $y \rightarrow c$
+    \item[] $x \rightarrow c$ et $y \rightarrow a$
+    \item[] $x \rightarrow c$ et $y \rightarrow b$
+    \item[] $x \rightarrow c$ et $y \rightarrow c$
+\end{itemize}
+      
+Il y a alors 4/8 assignations qui satisfont $c0$ et (1) :
+\begin{itemize}
+    \item[] $x \rightarrow b$ et $y \rightarrow b$
+    \item[] $x \rightarrow b$ et $y \rightarrow c$
+    \item[] $x \rightarrow c$ et $y \rightarrow b$
+    \item[] $x \rightarrow c$ et $y \rightarrow c$
+\end{itemize}
+Il y a alors 4/8 assignations qui satisfont $c0$ et (2) :
+\begin{itemize}
+    \item[] $x \rightarrow b$ et $y \rightarrow a$
+    \item[] $x \rightarrow b$ et $y \rightarrow b$
+    \item[] $x \rightarrow c$ et $y \rightarrow a$
+    \item[] $x \rightarrow c$ et $y \rightarrow b$
+\end{itemize}
+Il y a alors 4/8 assignations qui satisfont $c0$ et (3) :
+\begin{itemize}
+    \item[] $x \rightarrow a$ et $y \rightarrow a$
+    \item[] $x \rightarrow a$ et $y \rightarrow c$
+    \item[] $x \rightarrow b$ et $y \rightarrow a$
+    \item[] $x \rightarrow b$ et $y \rightarrow c$
+\end{itemize}
+Il y a alors 4/8 assignations qui satisfont $c0$ et (4) :
+\begin{itemize}
+    \item[] $x \rightarrow a$ et $y \rightarrow a$
+    \item[] $x \rightarrow a$ et $y \rightarrow c$
+    \item[] $x \rightarrow c$ et $y \rightarrow a$
+    \item[] $x \rightarrow c$ et $y \rightarrow c$
+\end{itemize}
+
+On voit alors que, s'il n'existe qu'une seule assignation $A$ possible pour $C$, alors il y a toujours deux possibilités d'ajout de $C'$ qui sont satisfaites par $A$ (chaque possibilité a une assignation en commun avec les trois autres).\\\\
+S'il existe plusieurs assignations possibles pour $C$, alors il y a plus de deux possibilités d'ajout de $C'$ qui sont satisfaites par une de ces assignations.\\\\
+Donc, comme il y a toujours au moins deux possibilités d'ajout pour $C'$ qui sont satisfaites par l'assignation satisfaisant $C$, on peut dire que si $C$ est satisfiable alors $C'$ est satisfiable avec probabilité au moins 1/2.
+\end{itemize}
+
+\subsubsection*{Question 6}
+
+Utilisation du programme :\\
+\verb|python3 algo_random.py [-r nb_repetitions] [-b] nom_fichier|\\
+\verb|-r nb_repetitions| : Nombre de répétitions de l'algorithme qu'on veut effectuer\\
+\verb|-b| : Active le mode brief (désactive l'affichage de la progression pour plus de rapidité)\\
+\verb|nom_fichier| : Fichier contenant la matrice d'adjacence d'un graphe (fournis dans le dossier \verb|graphes|)\\
+\begin{itemize}
+\item Graphe 1 : non coloriable
+\item Graphe 2 : coloriable à 100\% 
+\item Graphe 3 : coloriable à 0\% 
+\item Graphe 4 : coloriable à 95.37\% 
+\item Graphe 5 : coloriable à 87.86\% 
+\item Graphe 6 : non coloriable
+\item Graphe 7 : non coloriable
+\item Graphe 8 : non coloriable
+\item Graphe 9 : coloriable à 100\% 
+\item Graphe 10 : non coloriable
+\item Graphe bonus 1 : non coloriable
+\item Graphe bonus 2 : coloriable à 100\%
+\end{itemize}
+
+\section*{Motifs interdits pondéres}
+
+\subsection*{NP-complétude}
+
+\subsubsection*{Question 7}
+
+Problème de décision $W-SSS$ : Est-ce qu'il existe une assignation des variables dont le poids cumulé des contraintes satisfaites est supérieur à k pour un ensemble de contraintes pondéré donné ?
+
+\subsubsection*{Question 8}
+
+Rappel du problème $(3,2)-SSS$ :
+Instance : Un ensemble de contraintes $C$ ( = une liste de couples (variable, couleur))\\
+Problème : Existe-t'il une assignation satisfaisant l'ensemble de contraintes, c'est-à-dire : il existe une variable qui prend une valeur différente dans l’assignation et dans la contrainte.\\
+
+Pour $3-COLOR$ :\\
+Rappel du problème $3-COLOR$ :\\
+Instance : Un graphe $G = (V,E)$\\
+Problème : Existe-t’il une façon de colorier les sommets avec 3 couleurs de telle sorte qu’aucune arête n’aie les extrémités de la même couleur ?\\
+
+$3-COLOR \Rightarrow (3,2)-SSS$\\
+Chaque sommet du graphe $V$ correspond à une variable de $(3, 2)-SSS$.
+Soit la variable $Xi$ correspondant au sommet $Si$.
+Pour chaque arête reliant deux sommets (nommons les $S1$ et $S2$) dans $E$, on ajoute les contraintes suivantes :\\
+\begin{itemize}
+\item[] [(X1, R), (X2, R)],
+\item[] [(X1, V), (X2, V)],
+\item[] [(X1, B), (X2, B)]
+\end{itemize}
+
+\subsubsection*{Question 9}
+
+Dans la suite, on appelle $n$ le nombre de variables du problème.
+
+Preuve que $(3,2)-SSS$ appartient à NP :
+\begin{itemize}
+\item Certificat : une assignation qui correspond à une fonction associant chaque variable à une couleur donc :\\
+Taille certificat = $n log 3$  ($n$ * taille couleur)
+
+\item Instance : liste de contraintes binaires ou unaires = tableau de booléens comme dans l'implémentation de la question 6 (contraintes[$n$][$n$][3][3], pour les contraintes unaires, on peut les mettre dans le même tableau)\\
+Taille instance = $poly(9n^{2})$
+
+\item Algorithme de vérification :
+
+  \begin{tabbing}
+    \hspace{0.3cm}\=\hspace{0.3cm}\=\hspace{0.3cm}\=\hspace{0.3cm}\=\hspace{0.3cm}\=\hspace{0.3cm}\=\hspace{3cm}\=\\
+    \verb|Vérifier $(3,2)-SSS$ : données : certificat [0..n-1] (entier (0 ou 1 ou 2))|\\
+    \>\verb|certificatOk = true|\\
+    \>\verb|pour i de 0 à n faire|\\
+    \>\>\verb|pour j de 0 à n faire|\\
+    \>\>\>\verb|pour ci de 0 à 2 faire|\\
+    \>\>\>\>\verb|pour cj de 0 à 2 faire|\\
+    \>\>\>\>\>\verb|si contraintes[i][j][ci][cj] = true ET certificat[i] == ci|\\
+    \>\>\>\>\>\>\>\verb|ET certificat[j] == cj|\\
+    \>\>\>\>\>\>\verb|certificatOk = false|\\
+    \>\verb|retourner certificatOk|\\
+  \end{tabbing}
+
+(On peut optimiser en arrêtant le parcours quand certificatOk est faux.)\\
+Complexité de l'algo de vérification : $9n^{2}$ donc polynomial en la taille de l'instance.\\
+Donc $(3,2)-SSS$ appartient à NP.\\
+D'après la question 8), il existe une réduction polynômiale entre $3-COLOR$ et $(3,2)-SSS$.\\
+Or, $3-COLOR$ est NP-difficile donc $(3,2)-SSS$ l'est également.\\
+Donc, comme $(3,2)-SSS$ appartient à NP et est NP-difficile, on peut déduire que $(3,2)-SSS$ est NP-complet.
+\end{itemize}
+
+
+\subsection*{Algorithme glouton}
+
+\subsubsection*{Question 10}
+
+\begin{itemize}
+\item On choisit de trier les contraintes par ordre décroissant de poids divisé par le nombre de couples de la contrainte. Cela nous permet de prendre en premier les contraintes qui ont le meilleur rapport poids/''contraignance'', autrement dit les contraintes qui ont le plus de poids et contraignent le moins de variables, donc probablement les plus intéressantes.
+\item Algorithme glouton :
+  \begin{tabbing}
+    \hspace{0.3cm}\=\hspace{0.3cm}\=\hspace{3cm}\=\\
+    \verb|Wtotal = 0|\\
+    \verb|EnsAssignations = toutes les assignations possibles|\\
+    \>\>\>\verb|(différentes en fonction du nombre de variables)|\\
+    \verb|Pour chaque contrainte C de la liste de contraintes :|\\
+    \>\verb|EnsAssignationsTemp = EnsAssignations - l'ensemble|\\
+    \>\>\>\verb|d'assignations qui ne satisfont pas la contrainte C|\\
+    \>\verb|si EnsAssignationsTemp est non vide|\\
+    \>\>\verb|EnsAssignations = EnAssignationsTemp|\\
+    \>\>\verb|WTotal = WTotal + Cw|\\
+    \>\verb|fsi|\\
+    \verb|fpour|\\
+    \verb|retourner WTotal|\\
+  \end{tabbing}
+\end{itemize}
+
+\subsubsection*{Question 11}
+
+Cet algorithme n'est pas optimal car pour l'ensemble de contraintes suivant :\\
+\begin{itemize}
+\item[] (2, ([X, R], [Y, B]))
+\item[] (2, ([X, V], [Y, B]))
+\item[] (2, ([X, B], [Y, B]))
+\item[] (3, ([Y, B]))
+\item[] (4, ([Y, V]))
+\item[] (4, ([Y, R]))
+\end{itemize}
+Si on assigne $Y \rightarrow V$, alors la somme des poids vaut 2 + 2 + 2 + 3 + 4 = 13.\\
+Or, avec cette liste de contraintes, l'algorithme va considérer les deux variables de poids 4 et va donc assigner $Y \rightarrow B$.
+De ce fait, il ne va pas prendre la contrainte de poids 3 et ne pourra prendre que deux des contraintes de poids 2 (puisque $X$ va ``forcer'' une contrainte a ne pas être satisfaite).\\
+L'algorithme va donc nous renvoyer 4 + 4 + 2 + 2 = 12, ce qui ne peut pas être la solution optimale puisqu'on a trouvé une solution de poids 13.\\
+L'algorithme n'est donc pas optimal.\\
+
+\subsubsection*{Question 12}
+
+Les ensembles de contraintes de test utilisés sont en commentaire dans la fonction principale du code python.\\
+Utilisation de l'algorithme : \verb|python3 glouton.py|\\
+
+\end{document}
