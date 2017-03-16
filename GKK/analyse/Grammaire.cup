@@ -1,0 +1,305 @@
+package plic.analyse ;
+
+import java.util.*;
+import plic.arbre.* ;
+import plic.arbre.expression.* ;
+import plic.arbre.expression.binaire.*;
+import plic.arbre.expression.binaire.comparaison.*;
+import plic.arbre.expression.binaire.logique.*;
+import plic.arbre.expression.unaire.*;
+import plic.exceptions.AnalyseSyntaxiqueException;
+import plic.tds.*;
+import plic.tds.entrees.*;
+import plic.tds.symboles.*;
+import plic.arbre.declarations.*;
+import plic.arbre.ecriture.*;
+import plic.arbre.expression.acces.*;
+import plic.arbre.affectations.*;
+import plic.arbre.condition.Condition;
+
+import java_cup.runtime.*;
+
+action code {: 
+             :} ;
+
+parser code {:
+
+    public void report_error(String message, Object info) {
+
+        HashMap<Integer, String> lesTerminaux = new HashMap<>() ;
+    
+        lesTerminaux.put(new Integer(CodesLexicaux.PLUS), "+") ;
+        lesTerminaux.put(new Integer(CodesLexicaux.MOINS), "-") ;
+        lesTerminaux.put(new Integer(CodesLexicaux.MULT), "*") ;
+        lesTerminaux.put(new Integer(CodesLexicaux.DIV), "/") ;
+        lesTerminaux.put(new Integer(CodesLexicaux.PAROUV), "(") ;
+        lesTerminaux.put(new Integer(CodesLexicaux.PARFER), ")") ;
+        lesTerminaux.put(new Integer(CodesLexicaux.SUP), ">") ;
+        lesTerminaux.put(new Integer(CodesLexicaux.INF), "<") ;
+        lesTerminaux.put(new Integer(CodesLexicaux.EGALEGAL), "==") ;
+        lesTerminaux.put(new Integer(CodesLexicaux.DIFF), "!=") ;
+        lesTerminaux.put(new Integer(CodesLexicaux.ET), "et") ;
+        lesTerminaux.put(new Integer(CodesLexicaux.OU), "ou") ;
+        lesTerminaux.put(new Integer(CodesLexicaux.NON), "non") ;
+        lesTerminaux.put(new Integer(CodesLexicaux.EGAL), "=") ;
+
+        lesTerminaux.put(new Integer(CodesLexicaux.POINTVIRGULE), ";") ;
+        lesTerminaux.put(new Integer(CodesLexicaux.VIRGULE), ",") ;
+        
+        lesTerminaux.put(new Integer(CodesLexicaux.MCCLASSE), "classe");
+        lesTerminaux.put(new Integer(CodesLexicaux.VIRGULE), ",");
+        lesTerminaux.put(new Integer(CodesLexicaux.MCECRIRE), "ecrire");
+        lesTerminaux.put(new Integer(CodesLexicaux.STATUT), "statut");
+        lesTerminaux.put(new Integer(CodesLexicaux.TYPE), "type");
+
+
+        StringBuffer m = new StringBuffer() ;
+
+        if (info instanceof java_cup.runtime.Symbol) {
+            java_cup.runtime.Symbol s = ((java_cup.runtime.Symbol) info);
+
+            if (s.left >= 0) {                
+                m.append("\tligne : " + (s.left + 1)) ;
+                if (s.right >= 0)                    
+                    m.append(" colonne : " + (s.right+1)) ;
+            }
+            
+            if (s.value != null) {
+                lesTerminaux.put(CodesLexicaux.CONSTANTEINT, "" + s.value) ;
+                lesTerminaux.put(CodesLexicaux.CONSTANTEBOOL, "" + s.value) ;
+            }
+
+            if (lesTerminaux.containsKey(new Integer(s.sym))) {
+                m.append(" dernier token lu : " + lesTerminaux.get(new Integer(s.sym))) ;
+            }
+            else {
+                m.append(" expression non terminée") ;
+            }
+
+        }
+        throw new AnalyseSyntaxiqueException("" + m) ;
+    }
+
+    public void report_fatal_error(String message, Object info) {
+        report_error(message, info);
+    }
+:};
+   
+/* ------------Declaration of Terminals and Non Terminals Section----------- */
+   
+/* Terminals (tokens returned by the scanner).  */
+
+terminal Symbol    MCCLASSE;	//mot cle classe
+terminal Symbol	   FIN;	//mot cle fin
+terminal Symbol	   SI, SINON, ALORS, FINSI;
+
+terminal Symbol    PLUS, MOINS, MULT, DIV, PAROUV, PARFER ;
+terminal Symbol    SUP, INF, EGALEGAL, DIFF, ET, OU, NON ;
+terminal Symbol	   EGAL;
+terminal Symbol	   MCECRIRE;
+terminal Symbol	   POINTVIRGULE, VIRGULE;
+terminal String    IDF, CONSTANTEINT, CONSTANTEBOOL, CONSTANTECHAINE, STATUT, TYPE ;
+   
+/* Non terminals used in the grammar section.  */
+
+non terminal BlocDInstructions SYSTEME ;
+non terminal BlocDInstructions CLASSE;
+non terminal BlocDInstructions LDECL, DECLARATION, DECL_CHAMP, DECL_CONST, B_SINON;
+non terminal Condition CONDI;
+non terminal ArrayList<String> L_IDF;
+non terminal ArbreAbstrait INSTRUCTION; 
+non terminal ArbreAbstrait AFFECT; 
+non terminal ArbreAbstrait ECRIRE;
+non terminal Expression EXPR, CSTE, ACCES;
+
+precedence left INF, SUP ;
+precedence left EGALEGAL, DIFF;
+precedence left PLUS, MOINS;
+precedence left MULT, DIV ;
+precedence left OU ;
+precedence left ET ;
+precedence left NON ;
+precedence right MCECRIRE;
+precedence right SI;
+precedence left POINTVIRGULE;
+precedence left IDF;
+
+/* ----------------------------Grammar Section-------------------- */
+ 
+start with SYSTEME ;
+
+SYSTEME ::= 	CLASSE:c
+				{: BlocDInstructions arbre = new BlocDInstructions() ;
+                   arbre.ajouter(c) ;
+                   RESULT = arbre ; :}
+        |
+        		SYSTEME:s CLASSE:c
+        		{: 	s.ajouter(c);
+        			RESULT = s; :}   
+                ;
+
+CLASSE  ::= 	MCCLASSE IDF:i LDECL:l FIN
+				{: RESULT = l; :}
+		|
+				MCCLASSE IDF FIN
+				{: RESULT = new BlocDInstructions(); :}
+				;
+				
+LDECL   ::=		DECLARATION:d
+				{: RESULT = d; :}
+        |
+        		LDECL:l DECLARATION:d
+        		{: l.ajouter(d);
+        		   RESULT = l; :}  
+        		;
+
+DECLARATION ::=	DECL_CHAMP:d
+				{: RESULT = d; :}
+		|
+				DECL_CONST:c
+				{: RESULT = c; :}
+				;
+				
+DECL_CHAMP 	::=	STATUT:st TYPE:t L_IDF:li POINTVIRGULE
+				{: 
+					BlocDInstructions bl = new BlocDInstructions();
+					for(String s : li){
+						TDS.getInstance().ajouter(new EntreeVar(s), new SymboleVar(st, t));
+						DeclarationChamp dc = new DeclarationChamp(s, t, st);
+						dc.setLigne(((java_cup.runtime.Symbol)CUP$AnalyseurSyntaxique$stack.peek()).left);
+						bl.ajouter(dc);
+				  	} 
+				   RESULT = bl; :} 
+				;
+				
+L_IDF		::= IDF:i
+				{: ArrayList<String> als = new ArrayList<>(); 
+				   als.add(i);
+				   RESULT = als; :}
+			|
+				L_IDF:li VIRGULE IDF:i
+				{: li.add(i);
+				   RESULT = li; :}
+				;
+				
+DECL_CONST	::= INSTRUCTION:i
+				{: BlocDInstructions bdi = new BlocDInstructions(); 
+				   bdi.ajouter(i);
+				   RESULT = bdi; :}
+		|
+				DECL_CONST:d INSTRUCTION:i
+				{: d.ajouter(i);
+				   RESULT = d; :}
+				;
+				
+INSTRUCTION ::= AFFECT:a
+				{: RESULT = a; :}
+		|
+				ECRIRE:e
+				{: RESULT = e; :}
+		|		
+				CONDI:c
+				{: RESULT = c; :}
+				;
+				
+AFFECT	::=		ACCES:a EGAL EXPR:e POINTVIRGULE
+				{: 	RESULT = new Affectation(a, e); 
+					RESULT.setLigne(((java_cup.runtime.Symbol)CUP$AnalyseurSyntaxique$stack.peek()).left); :}
+				;
+				
+CONDI 	::=		SI EXPR:e ALORS B_SINON:b FINSI
+				{:  RESULT = new Condition(e, null, b);
+					RESULT.setLigne(((java_cup.runtime.Symbol)CUP$AnalyseurSyntaxique$stack.peek()).left); :}
+		|		
+				SI EXPR:e ALORS DECL_CONST:d B_SINON:b FINSI
+				{:	RESULT = new Condition(e, d, b);
+					RESULT.setLigne(((java_cup.runtime.Symbol)CUP$AnalyseurSyntaxique$stack.peek()).left); :}
+				;
+				
+B_SINON	::=		SINON DECL_CONST:d
+				{: 	BlocDInstructions bdi = new BlocDInstructions();
+					bdi.ajouter(d);
+					RESULT = bdi; :}
+		|
+				{: 	RESULT = null; :}
+				;
+				
+ECRIRE 	::=		MCECRIRE EXPR:e POINTVIRGULE
+				{: RESULT = new EcritureExpr(e); 
+					RESULT.setLigne(((java_cup.runtime.Symbol)CUP$AnalyseurSyntaxique$stack.peek()).left); :}
+		|
+				MCECRIRE CONSTANTECHAINE:c POINTVIRGULE
+				{: RESULT = new EcritureChaine(c); 
+					RESULT.setLigne(((java_cup.runtime.Symbol)CUP$AnalyseurSyntaxique$stack.peek()).left); :}
+				;
+
+EXPR    ::=     EXPR:g  PLUS  EXPR:d
+                {: RESULT = new Plus(g, d) ; 
+					RESULT.setLigne(((java_cup.runtime.Symbol)CUP$AnalyseurSyntaxique$stack.peek()).left); :}
+        | 
+                EXPR:g  MOINS  EXPR:d
+                {: RESULT = new Moins(g, d); 
+					RESULT.setLigne(((java_cup.runtime.Symbol)CUP$AnalyseurSyntaxique$stack.peek()).left); :}
+        |                
+                EXPR:g  MULT  EXPR:d
+                {: RESULT = new Mult(g, d); 
+					RESULT.setLigne(((java_cup.runtime.Symbol)CUP$AnalyseurSyntaxique$stack.peek()).left); :}
+        |                
+                EXPR:g  DIV  EXPR:d
+                {: RESULT = new Div(g, d); 
+					RESULT.setLigne(((java_cup.runtime.Symbol)CUP$AnalyseurSyntaxique$stack.peek()).left); :}
+        |       
+                EXPR:g  INF  EXPR:d
+                {: RESULT = new Inferieur(g, d); 
+					RESULT.setLigne(((java_cup.runtime.Symbol)CUP$AnalyseurSyntaxique$stack.peek()).left); :}
+        |       
+                EXPR:g  SUP  EXPR:d
+                {: RESULT = new Superieur(g, d); 
+					RESULT.setLigne(((java_cup.runtime.Symbol)CUP$AnalyseurSyntaxique$stack.peek()).left); :}
+        |              
+                EXPR:g  EGALEGAL  EXPR:d
+                {: RESULT = new Egal(g, d); 
+					RESULT.setLigne(((java_cup.runtime.Symbol)CUP$AnalyseurSyntaxique$stack.peek()).left); :}
+        |       
+                EXPR:g  DIFF  EXPR:d
+                {: RESULT = new Different(g, d); 
+					RESULT.setLigne(((java_cup.runtime.Symbol)CUP$AnalyseurSyntaxique$stack.peek()).left); :}
+        |                      
+                MOINS  EXPR:e  
+                {: RESULT = new MoinsUnaire(e); 
+					RESULT.setLigne(((java_cup.runtime.Symbol)CUP$AnalyseurSyntaxique$stack.peek()).left); :}
+        |      
+                EXPR:g  ET  EXPR:d
+                {: RESULT = new EtLogique(g, d); 
+					RESULT.setLigne(((java_cup.runtime.Symbol)CUP$AnalyseurSyntaxique$stack.peek()).left); :}
+        |      
+                EXPR:g  OU  EXPR:d
+                {: RESULT = new OuLogique(g, d); 
+					RESULT.setLigne(((java_cup.runtime.Symbol)CUP$AnalyseurSyntaxique$stack.peek()).left); :}
+        |      
+                NON EXPR:e
+                {: RESULT = new NonLogique(e); 
+					RESULT.setLigne(((java_cup.runtime.Symbol)CUP$AnalyseurSyntaxique$stack.peek()).left); :}
+        |
+				ACCES:a
+				{: RESULT = a; :}
+		|
+                CSTE:c
+                {: RESULT = c ; :}
+        |
+                PAROUV  EXPR:e  PARFER
+                {: RESULT = e ; :}
+                ;        
+
+ACCES	::=		IDF:i
+				{: RESULT = new Acces(i); 
+					RESULT.setLigne(((java_cup.runtime.Symbol)CUP$AnalyseurSyntaxique$stack.peek()).left); :}
+				;
+
+CSTE    ::=     CONSTANTEINT:e 
+                {: RESULT = new ConstanteEntiere(e) ; 
+					RESULT.setLigne(((java_cup.runtime.Symbol)CUP$AnalyseurSyntaxique$stack.peek()).left); :}
+        |       CONSTANTEBOOL:e 
+                {: RESULT = new ConstanteBool(e) ; 
+					RESULT.setLigne(((java_cup.runtime.Symbol)CUP$AnalyseurSyntaxique$stack.peek()).left); :}
+                ;
